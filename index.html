@@ -1,76 +1,206 @@
-<!DOCTYPE html><html lang="en">
+
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Be My Valentine 💖</title>
-  <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-      font-family: 'Poppins', sans-serif;
-    }
-    .card {
-      background: white;
-      padding: 40px 30px;
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-      text-align: center;
-      max-width: 320px;
-      width: 90%;
-    }
-    h1 {
-      color: #e91e63;
-      margin-bottom: 30px;
-    }
-    .buttons {
-      position: relative;
-      height: 80px;
-    }
-    button {
-      padding: 12px 25px;
-      font-size: 16px;
-      border: none;
-      border-radius: 30px;
-      cursor: pointer;
-    }
-    #yes {
-      background: #e91e63;
-      color: white;
-    }
-    #no {
-      background: #ccc;
-      color: #333;
-      position: absolute;
-      left: 120px;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>My Valentine ❤️</title>
+
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(to right, #ff758c, #ff7eb3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Poppins', sans-serif;
+  overflow: hidden;
+}
+
+.container {
+  background: white;
+  padding: 30px 40px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  z-index: 2;
+}
+
+#text {
+  font-size: 24px;
+  color: #ff2e63;
+  min-height: 70px;
+}
+
+#date {
+  color: #ff7eb3;
+  font-size: 16px;
+  margin-top: 10px;
+  animation: blink 1.5s infinite;
+  min-height: 20px;
+}
+
+@keyframes blink {
+  0%,100% {opacity:1;}
+  50% {opacity:0.4;}
+}
+
+button {
+  padding: 12px 25px;
+  font-size: 18px;
+  border-radius: 25px;
+  border: none;
+  cursor: pointer;
+  margin: 10px;
+}
+
+#yesBtn {
+  background: #ff2e63;
+  color: white;
+}
+
+#noBtn {
+  background: #ccc;
+  position: absolute;
+}
+
+#musicBtn {
+  background: #ff7eb3;
+  color: white;
+}
+
+/* Hearts */
+.heart {
+  position: fixed;
+  color: red;
+  font-size: 20px;
+  animation: float 4s linear infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0); opacity:1;}
+  100% { transform: translateY(-800px); opacity:0;}
+}
+
+/* Confetti */
+.confetti {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  animation: fall 3s linear infinite;
+}
+
+@keyframes fall {
+  0% { transform: translateY(0);}
+  100% { transform: translateY(800px);}
+}
+</style>
 </head>
+
 <body>
-  <div class="card">
-    <h1>Will you be my Valentine? 💘</h1>
-    <div class="buttons">
-      <button id="yes" onclick="yesClicked()">Yes 💖</button>
-      <button id="no">No 🙈</button>
-    </div>
-  </div>  <script>
-    const noBtn = document.getElementById('no');
 
-    noBtn.addEventListener('mouseenter', () => {
-      const x = Math.random() * 200 - 100;
-      const y = Math.random() * 60 - 30;
-      noBtn.style.transform = `translate(${x}px, ${y}px)`;
-    });
+<div class="container" id="mainBox">
+  <div id="text"></div>
+  <div id="date"></div>
 
-    function yesClicked() {
-      document.body.innerHTML = `
-        <div style="display:flex;align-items:center;justify-content:center;height:100vh;background:#ffe4ec;font-family:Poppins,sans-serif;text-align:center;">
-          <h1 style="color:#e91e63;">Yayyy! 💕💍<br>Best Valentine Ever 😘</h1>
-        </div>
-      `;
-    }
-  </script></body>
+  <div>
+    <button id="yesBtn" onclick="yesClicked()">Yes 💖</button>
+    <button id="noBtn" onmouseover="moveNo()">No 😜</button>
+  </div>
+
+  <br>
+  <button id="musicBtn" onclick="playMusic()">Play Music 🎶</button>
+</div>
+
+<audio id="music" src="https://www.bensound.com/bensound-music/bensound-love.mp3"></audio>
+
+<script>
+// Typing main text
+const text = "Hey Rohan 😘 it’s our second Valentine together… will you be my Valentine again? ❤️🙈";
+let i = 0;
+
+function typeText() {
+  if (i < text.length) {
+    document.getElementById("text").innerHTML += text.charAt(i);
+    i++;
+    setTimeout(typeText, 80);
+  }
+}
+typeText();
+
+// Tomorrow's date
+const tomorrow = new Date();
+tomorrow.setDate(tomorrow.getDate() + 1);
+const options = { day: 'numeric', month: 'long', year: 'numeric' };
+const dateText = "💌 Our Second Valentine – " + tomorrow.toLocaleDateString("en-GB", options);
+
+// Typing date
+let j = 0;
+function typeDate() {
+  if (j < dateText.length) {
+    document.getElementById("date").innerHTML += dateText.charAt(j);
+    j++;
+    setTimeout(typeDate, 80);
+  }
+}
+setTimeout(typeDate, 2000);
+
+// No button runs away
+const noBtn = document.getElementById("noBtn");
+function moveNo() {
+  const x = Math.random() * (window.innerWidth - 100);
+  const y = Math.random() * (window.innerHeight - 100);
+  noBtn.style.left = x + "px";
+  noBtn.style.top = y + "px";
+}
+
+// Yes click → full screen romantic message + date
+function yesClicked() {
+  document.body.innerHTML = `
+    <h1 style="color:white; text-align:center; margin-top:30vh; padding:20px;">
+      💖 Happy our second Valentine, Rohan 💖<br><br>
+      From our first Valentine to our second one today…<br>
+      I still get butterflies when I think of you 🙈❤️<br><br>
+      Thank you for being my Valentine again.<br>
+      Let’s make many more beautiful memories together 💖✨<br><br>
+      ${dateText}
+    </h1>
+  `;
+  createConfetti();
+  document.getElementById("music")?.play();
+}
+
+// Music
+function playMusic() {
+  document.getElementById("music").play();
+}
+
+// Hearts animation
+setInterval(createHeart, 300);
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.classList.add("heart");
+  heart.innerHTML = "❤️";
+  heart.style.left = Math.random() * window.innerWidth + "px";
+  heart.style.top = "100%";
+  document.body.appendChild(heart);
+
+  setTimeout(() => heart.remove(), 4000);
+}
+
+// Confetti
+function createConfetti() {
+  for(let i=0;i<60;i++){
+    const conf = document.createElement("div");
+    conf.classList.add("confetti");
+    conf.style.left = Math.random()*window.innerWidth + "px";
+    conf.style.backgroundColor = "hsl(" + Math.random()*360 + ",100%,50%)";
+    document.body.appendChild(conf);
+
+    setTimeout(()=> conf.remove(),3000);
+  }
+}
+</script>
+
+</body>
 </html>
