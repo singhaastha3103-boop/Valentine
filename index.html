@@ -1,101 +1,105 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Forever Valentine 💖</title>
+<title>For Rohan ❤️</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display&display=swap" rel="stylesheet">
 
 <style>
-*{box-sizing:border-box;}
 body{
 margin:0;
 font-family:'Playfair Display',serif;
-background:linear-gradient(120deg,#3b001a,#7a003c,#ff6fa5,#ffd1dc);
-background-size:400% 400%;
-animation:bg 20s ease infinite;
+background:radial-gradient(circle at top,#2b0015,#0d0007);
 min-height:100vh;
-color:white;
-overflow:hidden;
 text-align:center;
+color:#fff;
+overflow:hidden;
 }
 
-@keyframes bg{
-0%{background-position:0% 50%;}
-50%{background-position:100% 50%;}
-100%{background-position:0% 50%;}
+/* Candle glow */
+body::before{
+content:"";
+position:fixed;
+top:0;left:0;
+width:100%;height:100%;
+background:radial-gradient(circle at center,rgba(255,180,120,0.15),transparent 60%);
+animation:flicker 3s infinite alternate;
+pointer-events:none;
 }
-
-.section{
-display:none;
-padding:40px 20px;
-animation:fade 1.5s;
-}
-
-@keyframes fade{
-from{opacity:0; transform:translateY(30px);}
-to{opacity:1;}
+@keyframes flicker{
+from{opacity:0.6;}
+to{opacity:0.9;}
 }
 
 h1{
 font-family:'Great Vibes',cursive;
 font-size:46px;
-text-shadow:0 0 15px pink;
-margin-bottom:20px;
+color:#ffd6e8;
+text-shadow:0 0 20px gold;
+}
+
+.section{
+display:none;
+padding:30px;
+animation:fade 1.5s;
+}
+
+@keyframes fade{
+from{opacity:0; transform:translateY(20px);}
+to{opacity:1;}
 }
 
 .card{
-background:rgba(255,255,255,0.15);
-backdrop-filter:blur(14px);
-border-radius:30px;
+background:rgba(255,255,255,0.12);
+backdrop-filter:blur(12px);
+border-radius:25px;
 padding:30px;
-max-width:460px;
-margin:0 auto;
-box-shadow:0 0 30px rgba(255,192,203,0.6);
+box-shadow:0 0 30px rgba(255,180,120,0.4);
+max-width:520px;
+margin:30px auto;
 }
 
 button{
-padding:16px 32px;
-border-radius:40px;
-border:1px solid gold;
-background:linear-gradient(to right,#ff5fa2,#ff9ecf);
+padding:14px 30px;
+margin:12px;
+border-radius:30px;
+border:none;
+background:linear-gradient(to right,#ff5fa2,#ffb3d9);
 color:white;
 font-size:17px;
 cursor:pointer;
-box-shadow:0 0 25px rgba(255,215,0,0.7);
-transition:0.3s;
-margin:10px;
+box-shadow:0 0 20px rgba(255,200,150,0.6);
+transition:0.4s;
 }
-button:hover{transform:scale(1.08);}
+button:hover{
+transform:scale(1.1);
+box-shadow:0 0 35px gold;
+}
 
 .back{
 background:linear-gradient(to right,#b30059,#ff6699);
 }
 
-.heart,.spark{
+.heart{
 position:absolute;
 font-size:24px;
-pointer-events:none;
-animation:float 6s linear infinite;
+animation:float 6s infinite;
+opacity:0.8;
 }
 
 @keyframes float{
-0%{transform:translateY(110vh) scale(0.8);opacity:0;}
-20%{opacity:1;}
-100%{transform:translateY(-10vh) scale(1.2);opacity:0;}
+0%{transform:translateY(0);}
+100%{transform:translateY(-120vh);}
 }
 
-#lyrics,#letter{
-font-size:20px;
+#lyrics{
+font-size:19px;
 line-height:1.9;
 text-shadow:0 0 10px pink;
-min-height:80px;
-}
-
-#question{
-font-size:34px;
-font-family:'Great Vibes',cursive;
-text-shadow:0 0 20px gold;
+opacity:0;
+transition:opacity 1.5s;
 }
 
 .firework{
@@ -105,155 +109,169 @@ height:8px;
 border-radius:50%;
 pointer-events:none;
 }
-
-#noBtn{position:absolute;}
 </style>
 </head>
 
 <body>
 
-<audio id="music" loop preload="auto">
-  <source src="romantic.mp3" type="audio/mpeg">
-</audio>
+<script>
+for(let i=0;i<18;i++){
+let h=document.createElement("div");
+h.className="heart";
+h.innerText="🕯️";
+h.style.left=Math.random()*100+"%";
+h.style.top=Math.random()*100+"%";
+h.style.animationDuration=4+Math.random()*6+"s";
+document.body.appendChild(h);
+}
+</script>
 
-<!-- ENTRY -->
-<div id="start" class="section" style="display:block;">
-<h1>This is not a page…</h1>
+<!-- HOME -->
+<div id="home" class="section" style="display:block;">
+<h1>For You, Rohan ❤️</h1>
 <div class="card">
-<p>It’s a feeling I wanted you to experience slowly 💖</p>
-<button onclick="begin()">✨ Begin Our Story</button>
+<p>This is not a website.<br>This is a feeling…</p>
+<button onclick="startJourney()">Begin ✨</button>
 </div>
 </div>
 
-<!-- SONG -->
-<div id="song" class="section">
-<h1>Our Song 🎶</h1>
+<!-- STORY -->
+<div id="story" class="section">
+<h1>Our Story 🌙</h1>
 <div class="card">
 <p id="lyrics"></p>
-<button onclick="toggleMusic()">💖 Play / Pause</button>
 </div>
-<button class="back" onclick="show('letter')">Continue 💌</button>
 </div>
 
-<!-- LETTER -->
-<div id="letter" class="section">
-<h1>A Letter For You 💌</h1>
-<div class="card">
-<p id="letterText"></p>
-</div>
-<button class="back" onclick="show('unlock')">Keep Going ✨</button>
-</div>
-
-<!-- UNLOCK -->
-<div id="unlock" class="section">
-<h1>A Small Secret 💗</h1>
-<div class="card">
-<p>Enter the word that feels like <i>us</i>…</p>
-<input id="code" placeholder="Type here…" style="padding:14px;border-radius:20px;border:none;font-size:16px;">
-<br><br>
-<button onclick="check()">Unlock 💞</button>
-<p id="hint"></p>
-</div>
-</div>
+<audio id="song" loop>
+<source src="song.mp3" type="audio/mpeg">
+</audio>
 
 <!-- QUESTION -->
 <div id="final" class="section">
-<h1 id="question">Will you be my second…<br>and forever Valentine? 💍💖</h1>
-<button onclick="yes()">YES 💖</button>
-<button id="noBtn" onmouseover="moveNo()">NO 😜</button>
+<h1>One Last Question 💍</h1>
+<div class="card">
+<p style="font-size:22px; line-height:1.8;">
+Will you be my second…<br>
+and forever Valentine,<br>
+<b>Rohan</b>? 💖
+</p>
+<button onclick="yesLove()">YES 💕</button>
+</div>
 <p id="finalMsg"></p>
 </div>
 
 <script>
-const music=document.getElementById("music");
-music.volume=0;
-
-function fadeIn(){
-let v=0;
-let i=setInterval(()=>{
-v+=0.02;
-music.volume=v;
-if(v>=0.6)clearInterval(i);
-},150);
-}
-
-function begin(){
-show("song");
-music.play();
-fadeIn();
-lyricsFlow();
-hearts();
-}
-
-function toggleMusic(){
-music.paused?music.play():music.pause();
-}
-
 function show(id){
 document.querySelectorAll('.section').forEach(s=>s.style.display="none");
 document.getElementById(id).style.display="block";
 }
 
-const lyrics=[
-"Kaise bataaye kyun tujhko chahein… 🌙",
-"Every note carries my unspoken feelings…",
-"You became my calm, my chaos, my home…",
-"Time slows down whenever I think of you…",
-"This song knows what my lips never say…",
-"And my heart? It chose you… quietly, completely 💖"
+const storyLines = [
+"We were in the same classroom once…",
+"sharing the same space, the same air,",
+"yet never a single word.",
+
+"Life moved quietly forward,",
+"and somehow… so did we.",
+
+"Years passed.",
+"Three… maybe four.",
+"Enough time for us to grow",
+"into different versions of ourselves.",
+
+"And then—unexpectedly—",
+"the universe decided to try again.",
+
+"A screen.",
+"A message.",
+
+"And suddenly,",
+"you weren’t just a familiar face…",
+"you were a feeling.",
+
+"We talked like we were making up for lost time.",
+"Like two souls that finally found",
+"the right moment.",
+
+"Within just a month… maybe two…",
+"you asked me a question",
+"that carried so much hope.",
+
+"And when I said yes…",
+"it didn’t feel rushed.",
+
+"It felt right.",
+
+"Since then, every day with you",
+"has been gentle",
+"in ways I didn’t know love could be.",
+
+"You take care of my foolish little moments,",
+"like they’re something precious—",
+"not something to fix.",
+
+"You calm my storms",
+"without ever silencing me.",
+
+"You handle my anger",
+"not with fear,",
+"but with patience.",
+
+"You stay.",
+"Even when I’m difficult.",
+"Especially when I’m difficult.",
+
+"With you, I learned",
+"that love isn’t loud promises—",
+"it’s quiet understanding.",
+
+"It’s choosing each other",
+"on ordinary days.",
+
+"It’s knowing that someone sees",
+"all of you…",
+"and still says,",
+"“I’m here.”",
+
+"I don’t know how many lifetimes it took,",
+"but somehow…",
+"we met at the exact right one.",
+
+"And every day since,",
+"I feel blessed—",
+"not loudly,",
+"but deeply."
 ];
 
-function lyricsFlow(){
+function startJourney(){
+show("story");
+let song=document.getElementById("song");
+song.play();
 let box=document.getElementById("lyrics");
-lyrics.forEach((l,i)=>{
+let delay=0;
+storyLines.forEach(line=>{
 setTimeout(()=>{
 box.style.opacity=0;
 setTimeout(()=>{
-box.innerHTML=l;
+box.innerHTML=line;
 box.style.opacity=1;
-},400);
-},i*6000);
+},800);
+},delay);
+delay+=4200;
 });
-}
-
-const letterLines=[
-"I never planned this…",
-"But somehow, you became my favorite thought.",
-"In a world full of noise, you felt like peace.",
-"I smile more because of you.",
-"I feel stronger, softer, braver — all at once.",
-"And maybe… just maybe… this is what forever begins like."
-];
-
-let i=0;
-function typeLetter(){
-if(i<letterLines.length){
-document.getElementById("letterText").innerHTML+=letterLines[i]+"<br><br>";
-i++;
-setTimeout(typeLetter,2000);
-}
-}
-document.getElementById("letter").addEventListener("click",typeLetter,{once:true});
-
-function check(){
-if(document.getElementById("code").value.toLowerCase()=="forever"){
+setTimeout(()=>{
 show("final");
-}else{
-document.getElementById("hint").innerText="Hmm… that doesn’t feel quite right 😄";
-}
+},delay+3000);
 }
 
-function moveNo(){
-document.getElementById("noBtn").style.left=Math.random()*80+"%";
-document.getElementById("noBtn").style.top=Math.random()*80+"%";
-}
-
-function fire(x,y){
+function createFirework(x,y){
 for(let i=0;i<30;i++){
 let f=document.createElement("div");
 f.className="firework";
-f.style.background=`hsl(${Math.random()*360},100%,50%)`;
-f.style.left=x+"px";f.style.top=y+"px";
+f.style.background=`hsl(${Math.random()*360},100%,60%)`;
+f.style.left=x+"px";
+f.style.top=y+"px";
 document.body.appendChild(f);
 let a=Math.random()*2*Math.PI;
 let d=40+Math.random()*60;
@@ -261,27 +279,18 @@ setTimeout(()=>{
 f.style.transform=`translate(${Math.cos(a)*d}px,${Math.sin(a)*d}px)`;
 f.style.opacity=0;
 },10);
-setTimeout(()=>f.remove(),1200);
+setTimeout(()=>f.remove(),1000);
 }
 }
 
-function yes(){
+function yesLove(){
 document.getElementById("finalMsg").innerText=
-"Then it’s settled… every Valentine from now on belongs to us 💖";
+"Forever begins here… 💖";
 for(let i=0;i<6;i++){
-setTimeout(()=>fire(Math.random()*innerWidth,Math.random()*innerHeight),i*300);
+setTimeout(()=>{
+createFirework(Math.random()*innerWidth,Math.random()*innerHeight);
+},i*400);
 }
-}
-
-function hearts(){
-setInterval(()=>{
-let h=document.createElement("div");
-h.className="heart";
-h.innerText="❤️";
-h.style.left=Math.random()*100+"%";
-document.body.appendChild(h);
-setTimeout(()=>h.remove(),6000);
-},500);
 }
 </script>
 
