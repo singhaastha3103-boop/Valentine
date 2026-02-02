@@ -7,56 +7,61 @@
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display&display=swap" rel="stylesheet">
 
 <style>
+/* RESET */
+*{
+box-sizing:border-box;
+}
+
+/* BODY — allow scrolling */
 body{
 margin:0;
 font-family:'Playfair Display',serif;
 background:radial-gradient(circle at top,#2b0015,#0d0007);
-min-height:100vh;
 color:#fff;
-overflow:hidden;
+overflow-x:hidden;
 }
 
 /* Candle glow */
 body::before{
 content:"";
 position:fixed;
-top:0;left:0;
-width:100%;height:100%;
-background:radial-gradient(circle at center,rgba(255,180,120,0.2),transparent 65%);
+inset:0;
+background:radial-gradient(circle at center,rgba(255,180,120,0.22),transparent 65%);
 animation:flicker 3s infinite alternate;
 pointer-events:none;
+z-index:-1;
 }
 @keyframes flicker{
 from{opacity:0.6;}
 to{opacity:0.95;}
 }
 
+/* HEADINGS */
 h1{
 font-family:'Great Vibes',cursive;
-font-size:48px;
+font-size:46px;
 color:#ffd6e8;
 text-shadow:0 0 25px gold;
 text-align:center;
+margin:25px 0;
 }
 
+/* SECTIONS — NO FIXED HEIGHT */
 .section{
 display:none;
 padding:20px;
-height:100vh;
-box-sizing:border-box;
 }
 
-/* VERY BIG READING CARD */
+/* BIG STORY CARD — MOBILE SAFE */
 .card{
 background:rgba(255,255,255,0.15);
 backdrop-filter:blur(16px);
 border-radius:35px;
-padding:45px;
-box-shadow:0 0 50px rgba(255,180,120,0.5);
-width:90%;
-height:75vh;              /* BIG HEIGHT */
-margin:0 auto;
-overflow-y:auto;
+padding:35px;
+box-shadow:0 0 45px rgba(255,180,120,0.5);
+width:95%;
+max-width:900px;
+margin:0 auto 40px;
 }
 
 /* STORY TEXT */
@@ -64,36 +69,39 @@ overflow-y:auto;
 font-size:21px;
 line-height:2.1;
 text-align:left;
-text-shadow:0 0 8px rgba(255,200,200,0.6);
+text-shadow:0 0 10px rgba(255,200,200,0.7);
 }
 
-/* paragraph spacing */
+/* PARAGRAPHS */
 .story-para{
 margin-bottom:35px;
 opacity:0;
 animation:fadeIn 2s forwards;
 }
-
 @keyframes fadeIn{
 to{opacity:1;}
 }
 
+/* BUTTONS */
 button{
-padding:15px 35px;
+display:block;
+margin:30px auto;
+padding:15px 40px;
 border-radius:35px;
 border:none;
 background:linear-gradient(to right,#ff5fa2,#ffb3d9);
 color:white;
 font-size:18px;
 cursor:pointer;
-box-shadow:0 0 25px rgba(255,200,150,0.6);
+box-shadow:0 0 25px rgba(255,200,150,0.7);
 transition:0.4s;
 }
 button:hover{
 transform:scale(1.1);
-box-shadow:0 0 40px gold;
+box-shadow:0 0 45px gold;
 }
 
+/* FIREWORK */
 .firework{
 position:absolute;
 width:8px;
@@ -109,126 +117,14 @@ pointer-events:none;
 <!-- HOME -->
 <div id="home" class="section" style="display:block;">
 <h1>For You, Rohan ❤️</h1>
-<div class="card" style="height:auto;">
+<div class="card">
 <p style="font-size:22px; text-align:center;">
-This isn’t something to scroll through.<br>
-It’s something to stay with… 🕯️
+This is not meant to be rushed.<br>
+Read it slowly… like a letter. 🕯️
 </p>
-<div style="text-align:center; margin-top:30px;">
 <button onclick="startJourney()">Begin ✨</button>
-</div>
 </div>
 </div>
 
 <!-- STORY -->
-<div id="story" class="section">
-<h1>Our Story 🕯️</h1>
-<div class="card">
-<div id="lyrics"></div>
-</div>
-</div>
-
-<!-- AUDIO -->
-<audio id="song" loop>
-<source src="romantic.mp3" type="audio/mpeg">
-</audio>
-
-<!-- FINAL -->
-<div id="final" class="section">
-<h1>One Last Question 💍</h1>
-<div class="card" style="height:auto; text-align:center;">
-<p style="font-size:24px; line-height:1.8;">
-Will you be my second…<br>
-and forever Valentine,<br>
-<b>Rohan</b>? 💖
-</p>
-<button onclick="yesLove()">YES 💕</button>
-</div>
-<p id="finalMsg" style="text-align:center;"></p>
-</div>
-
-<script>
-function show(id){
-document.querySelectorAll('.section').forEach(s=>s.style.display="none");
-document.getElementById(id).style.display="block";
-}
-
-/* STORY PARAGRAPHS (ACCUMULATING) */
-const storyLines = [
-"We were in the same classroom once, sharing the same space, the same air — yet never a single word. Life moved quietly forward, and somehow… so did we.",
-
-"Years passed. Three… maybe four. Enough time for us to grow into different versions of ourselves. And then — unexpectedly — the universe decided to try again.",
-
-"A screen. A message. And suddenly, you weren’t just a familiar face… you were a feeling. We talked like we were making up for lost time, like two souls that finally found the right moment.",
-
-"Within just a month… maybe two… you asked me a question that carried so much hope. And when I said yes, it didn’t feel rushed. It felt right.",
-
-"Since then, every day with you has been gentle in ways I didn’t know love could be. You take care of my foolish little moments like they’re something precious — not something to fix.",
-
-"You calm my storms without ever silencing me. You handle my anger not with fear, but with patience. You stay — even when I’m difficult. Especially when I’m difficult.",
-
-"With you, I learned that love isn’t loud promises — it’s quiet understanding. It’s choosing each other on ordinary days. It’s knowing that someone sees all of you and still says, “I’m here.”",
-
-"I don’t know how many lifetimes it took, but somehow we met at the exact right one. And every day since, I feel blessed — not loudly, but deeply."
-];
-
-function startJourney(){
-show("story");
-document.getElementById("song").play();
-
-const box = document.getElementById("lyrics");
-box.innerHTML = "";
-
-let delay = 0;
-storyLines.forEach(text=>{
-setTimeout(()=>{
-let p = document.createElement("div");
-p.className = "story-para";
-p.innerText = text;
-box.appendChild(p);
-
-/* auto scroll down */
-box.parentElement.scrollTop = box.parentElement.scrollHeight;
-}, delay);
-
-delay += 6000;   // time to read each paragraph
-});
-
-setTimeout(()=>{
-show("final");
-}, delay + 5000);
-}
-
-/* FIREWORKS */
-function createFirework(x,y){
-for(let i=0;i<30;i++){
-let f=document.createElement("div");
-f.className="firework";
-f.style.background=`hsl(${Math.random()*360},100%,60%)`;
-f.style.left=x+"px";
-f.style.top=y+"px";
-document.body.appendChild(f);
-let a=Math.random()*2*Math.PI;
-let d=40+Math.random()*60;
-setTimeout(()=>{
-f.style.transform=`translate(${Math.cos(a)*d}px,${Math.sin(a)*d}px)`;
-f.style.opacity=0;
-},10);
-setTimeout(()=>f.remove(),1000);
-}
-}
-
-function yesLove(){
-document.getElementById("finalMsg").innerText="Forever begins here… 💖";
-for(let i=0;i<6;i++){
-setTimeout(()=>{
-createFirework(Math.random()*innerWidth,Math.random()*innerHeight);
-},i*400);
-}
-}
-</script>
-
-</body>
-</html>
-
-
+<div id="story"
