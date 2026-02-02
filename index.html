@@ -1,102 +1,101 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>My Valentine 💖</title>
+<title>Forever Valentine 💖</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display&display=swap" rel="stylesheet">
 
 <style>
+*{box-sizing:border-box;}
 body{
 margin:0;
 font-family:'Playfair Display',serif;
-background:linear-gradient(135deg,#7a003c,#ff4d88,#ffd1dc);
+background:linear-gradient(120deg,#3b001a,#7a003c,#ff6fa5,#ffd1dc);
+background-size:400% 400%;
+animation:bg 20s ease infinite;
 min-height:100vh;
-text-align:center;
 color:white;
 overflow:hidden;
+text-align:center;
 }
 
-h1{
-font-family:'Great Vibes',cursive;
-font-size:42px;
-color:#ffd9ec;
-text-shadow:0 0 10px pink;
+@keyframes bg{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
 }
 
 .section{
 display:none;
-padding:25px;
-animation:fade 1s;
+padding:40px 20px;
+animation:fade 1.5s;
 }
 
 @keyframes fade{
-from{opacity:0; transform:translateY(20px);}
+from{opacity:0; transform:translateY(30px);}
 to{opacity:1;}
+}
+
+h1{
+font-family:'Great Vibes',cursive;
+font-size:46px;
+text-shadow:0 0 15px pink;
+margin-bottom:20px;
 }
 
 .card{
 background:rgba(255,255,255,0.15);
-backdrop-filter:blur(10px);
-border-radius:25px;
-padding:25px;
-box-shadow:0 0 20px rgba(255,192,203,0.6);
-max-width:420px;
-margin:20px auto;
+backdrop-filter:blur(14px);
+border-radius:30px;
+padding:30px;
+max-width:460px;
+margin:0 auto;
+box-shadow:0 0 30px rgba(255,192,203,0.6);
 }
 
 button{
-padding:14px 26px;
-margin:10px;
-border-radius:30px;
+padding:16px 32px;
+border-radius:40px;
 border:1px solid gold;
 background:linear-gradient(to right,#ff5fa2,#ff9ecf);
 color:white;
-font-size:16px;
+font-size:17px;
 cursor:pointer;
-box-shadow:0 0 20px rgba(255,215,0,0.6);
+box-shadow:0 0 25px rgba(255,215,0,0.7);
 transition:0.3s;
+margin:10px;
 }
-button:hover{
-transform:scale(1.08);
-box-shadow:0 0 30px gold;
-}
+button:hover{transform:scale(1.08);}
 
 .back{
 background:linear-gradient(to right,#b30059,#ff6699);
 }
 
-.heart{
+.heart,.spark{
 position:absolute;
-font-size:26px;
-animation:float 5s infinite;
+font-size:24px;
+pointer-events:none;
+animation:float 6s linear infinite;
 }
 
 @keyframes float{
-0%{transform:translateY(0);}
-100%{transform:translateY(-100vh);}
+0%{transform:translateY(110vh) scale(0.8);opacity:0;}
+20%{opacity:1;}
+100%{transform:translateY(-10vh) scale(1.2);opacity:0;}
 }
 
-.petal{
-position:absolute;
-font-size:24px;
-animation:fall 7s linear infinite;
-opacity:0.9;
-filter:drop-shadow(0 0 5px pink);
-}
-
-@keyframes fall{
-0%{transform:translateY(-10vh) rotate(0deg);}
-100%{transform:translateY(110vh) rotate(360deg);}
-}
-
-#lyrics{
+#lyrics,#letter{
 font-size:20px;
-line-height:1.8;
-text-shadow:0 0 10px pink, 0 0 20px gold;
-opacity:0;
-transition:opacity 1s ease-in-out;
+line-height:1.9;
+text-shadow:0 0 10px pink;
+min-height:80px;
+}
+
+#question{
+font-size:34px;
+font-family:'Great Vibes',cursive;
+text-shadow:0 0 20px gold;
 }
 
 .firework{
@@ -107,105 +106,141 @@ border-radius:50%;
 pointer-events:none;
 }
 
-#noBtn{
-position:absolute;
-}
+#noBtn{position:absolute;}
 </style>
 </head>
 
 <body>
 
-<!-- Floating hearts & petals -->
-<script>
-for(let i=0;i<15;i++){
-let h=document.createElement("div");
-h.className="heart";
-h.innerText="❤️";
-h.style.left=Math.random()*100+"%";
-h.style.top=Math.random()*100+"%";
-h.style.animationDuration=3+Math.random()*5+"s";
-document.body.appendChild(h);
-}
+<audio id="music" loop preload="auto">
+  <source src="romantic.mp3" type="audio/mpeg">
+</audio>
 
-for(let i=0;i<25;i++){
-let p=document.createElement("div");
-p.className="petal";
-p.innerText="🌹";
-p.style.left=Math.random()*100+"%";
-p.style.animationDuration=4+Math.random()*6+"s";
-document.body.appendChild(p);
-}
-</script>
-
-<!-- HOME -->
-<div id="home" class="section" style="display:block;">
-<h1>Welcome My Love 💖</h1>
+<!-- ENTRY -->
+<div id="start" class="section" style="display:block;">
+<h1>This is not a page…</h1>
 <div class="card">
-<p>Every click is a piece of my heart…</p>
-<button onclick="showSection('music')">🎶 Our Song</button>
-<button onclick="showSection('final')">💍 Final Surprise</button>
+<p>It’s a feeling I wanted you to experience slowly 💖</p>
+<button onclick="begin()">✨ Begin Our Story</button>
 </div>
 </div>
 
-<!-- MUSIC -->
-<div id="music" class="section" style="background:radial-gradient(circle at top,#ff9ecf,#5a0033,#1a0010);">
+<!-- SONG -->
+<div id="song" class="section">
 <h1>Our Song 🎶</h1>
 <div class="card">
 <p id="lyrics"></p>
-<button onclick="playMusic()">💖 Play Our Song</button>
+<button onclick="toggleMusic()">💖 Play / Pause</button>
 </div>
-<button class="back" onclick="showSection('home')">🏠 Home</button>
+<button class="back" onclick="show('letter')">Continue 💌</button>
 </div>
 
-<!-- 🔊 AUDIO (IMPORTANT) -->
-<!-- 🔴 Make sure file name EXACTLY matches -->
-<audio id="song" preload="auto" loop>
-  <source src="song.mp3" type="audio/mpeg">
-</audio>
+<!-- LETTER -->
+<div id="letter" class="section">
+<h1>A Letter For You 💌</h1>
+<div class="card">
+<p id="letterText"></p>
+</div>
+<button class="back" onclick="show('unlock')">Keep Going ✨</button>
+</div>
 
-<!-- FINAL -->
+<!-- UNLOCK -->
+<div id="unlock" class="section">
+<h1>A Small Secret 💗</h1>
+<div class="card">
+<p>Enter the word that feels like <i>us</i>…</p>
+<input id="code" placeholder="Type here…" style="padding:14px;border-radius:20px;border:none;font-size:16px;">
+<br><br>
+<button onclick="check()">Unlock 💞</button>
+<p id="hint"></p>
+</div>
+</div>
+
+<!-- QUESTION -->
 <div id="final" class="section">
-<h1>Will you be my Valentine forever? 💍</h1>
-<button onclick="yesLove()">YES 💖</button>
+<h1 id="question">Will you be my second…<br>and forever Valentine? 💍💖</h1>
+<button onclick="yes()">YES 💖</button>
 <button id="noBtn" onmouseover="moveNo()">NO 😜</button>
 <p id="finalMsg"></p>
-<button class="back" onclick="showSection('home')">🏠 Home</button>
 </div>
 
 <script>
-function showSection(id){
+const music=document.getElementById("music");
+music.volume=0;
+
+function fadeIn(){
+let v=0;
+let i=setInterval(()=>{
+v+=0.02;
+music.volume=v;
+if(v>=0.6)clearInterval(i);
+},150);
+}
+
+function begin(){
+show("song");
+music.play();
+fadeIn();
+lyricsFlow();
+hearts();
+}
+
+function toggleMusic(){
+music.paused?music.play():music.pause();
+}
+
+function show(id){
 document.querySelectorAll('.section').forEach(s=>s.style.display="none");
 document.getElementById(id).style.display="block";
 }
 
-let lyricsLines=[
-"Kaise bataaye kyun tujhko chahein… 🌙💖",
-"Har pal bas tera hi naam aaye…",
-"My dearest Rohan, my Bubu… 🐻💕",
-"This song is my silent confession…",
-"Every beat carries a piece of my heart to you…",
-"And in every lifetime, I will still choose you… 💍💖"
+const lyrics=[
+"Kaise bataaye kyun tujhko chahein… 🌙",
+"Every note carries my unspoken feelings…",
+"You became my calm, my chaos, my home…",
+"Time slows down whenever I think of you…",
+"This song knows what my lips never say…",
+"And my heart? It chose you… quietly, completely 💖"
 ];
 
-let timings=[0,6000,12000,18000,24000,30000];
-
-function showLyrics(){
+function lyricsFlow(){
 let box=document.getElementById("lyrics");
-lyricsLines.forEach((line,i)=>{
+lyrics.forEach((l,i)=>{
 setTimeout(()=>{
 box.style.opacity=0;
 setTimeout(()=>{
-box.innerHTML=line;
+box.innerHTML=l;
 box.style.opacity=1;
 },400);
-},timings[i]);
+},i*6000);
 });
 }
 
-function playMusic(){
-let song=document.getElementById("song");
-song.play().catch(err=>console.log(err));
-showLyrics();
+const letterLines=[
+"I never planned this…",
+"But somehow, you became my favorite thought.",
+"In a world full of noise, you felt like peace.",
+"I smile more because of you.",
+"I feel stronger, softer, braver — all at once.",
+"And maybe… just maybe… this is what forever begins like."
+];
+
+let i=0;
+function typeLetter(){
+if(i<letterLines.length){
+document.getElementById("letterText").innerHTML+=letterLines[i]+"<br><br>";
+i++;
+setTimeout(typeLetter,2000);
+}
+}
+document.getElementById("letter").addEventListener("click",typeLetter,{once:true});
+
+function check(){
+if(document.getElementById("code").value.toLowerCase()=="forever"){
+show("final");
+}else{
+document.getElementById("hint").innerText="Hmm… that doesn’t feel quite right 😄";
+}
 }
 
 function moveNo(){
@@ -213,33 +248,42 @@ document.getElementById("noBtn").style.left=Math.random()*80+"%";
 document.getElementById("noBtn").style.top=Math.random()*80+"%";
 }
 
-function createFirework(x,y){
-for(let i=0;i<25;i++){
+function fire(x,y){
+for(let i=0;i<30;i++){
 let f=document.createElement("div");
 f.className="firework";
 f.style.background=`hsl(${Math.random()*360},100%,50%)`;
-f.style.left=x+"px";
-f.style.top=y+"px";
+f.style.left=x+"px";f.style.top=y+"px";
 document.body.appendChild(f);
 let a=Math.random()*2*Math.PI;
-let d=30+Math.random()*50;
+let d=40+Math.random()*60;
 setTimeout(()=>{
 f.style.transform=`translate(${Math.cos(a)*d}px,${Math.sin(a)*d}px)`;
 f.style.opacity=0;
 },10);
-setTimeout(()=>f.remove(),1000);
+setTimeout(()=>f.remove(),1200);
 }
 }
 
-function yesLove(){
-document.getElementById("finalMsg").innerText="Forever begins with you… 💍💖";
-for(let i=0;i<5;i++){
-setTimeout(()=>createFirework(Math.random()*innerWidth,Math.random()*innerHeight),i*300);
+function yes(){
+document.getElementById("finalMsg").innerText=
+"Then it’s settled… every Valentine from now on belongs to us 💖";
+for(let i=0;i<6;i++){
+setTimeout(()=>fire(Math.random()*innerWidth,Math.random()*innerHeight),i*300);
 }
+}
+
+function hearts(){
+setInterval(()=>{
+let h=document.createElement("div");
+h.className="heart";
+h.innerText="❤️";
+h.style.left=Math.random()*100+"%";
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),6000);
+},500);
 }
 </script>
 
 </body>
 </html>
-
-
