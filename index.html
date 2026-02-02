@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +12,6 @@ margin:0;
 font-family:'Playfair Display',serif;
 background:radial-gradient(circle at top,#2b0015,#0d0007);
 min-height:100vh;
-text-align:center;
 color:#fff;
 overflow:hidden;
 }
@@ -24,84 +22,76 @@ content:"";
 position:fixed;
 top:0;left:0;
 width:100%;height:100%;
-background:radial-gradient(circle at center,rgba(255,180,120,0.18),transparent 65%);
+background:radial-gradient(circle at center,rgba(255,180,120,0.2),transparent 65%);
 animation:flicker 3s infinite alternate;
 pointer-events:none;
 }
 @keyframes flicker{
 from{opacity:0.6;}
-to{opacity:0.9;}
+to{opacity:0.95;}
 }
 
 h1{
 font-family:'Great Vibes',cursive;
-font-size:46px;
+font-size:48px;
 color:#ffd6e8;
-text-shadow:0 0 20px gold;
-margin-bottom:20px;
+text-shadow:0 0 25px gold;
+text-align:center;
 }
 
 .section{
 display:none;
-padding:30px;
-animation:fade 1.5s;
+padding:20px;
+height:100vh;
+box-sizing:border-box;
 }
 
-@keyframes fade{
-from{opacity:0; transform:translateY(20px);}
-to{opacity:1;}
-}
-
-/* BIG READING CARD */
+/* VERY BIG READING CARD */
 .card{
-background:rgba(255,255,255,0.14);
-backdrop-filter:blur(14px);
-border-radius:30px;
-padding:40px;
-box-shadow:0 0 40px rgba(255,180,120,0.45);
-max-width:720px;
-min-height:60vh;
-margin:20px auto;
+background:rgba(255,255,255,0.15);
+backdrop-filter:blur(16px);
+border-radius:35px;
+padding:45px;
+box-shadow:0 0 50px rgba(255,180,120,0.5);
+width:90%;
+height:75vh;              /* BIG HEIGHT */
+margin:0 auto;
 overflow-y:auto;
 }
 
 /* STORY TEXT */
 #lyrics{
-font-size:20px;
-line-height:2;
+font-size:21px;
+line-height:2.1;
 text-align:left;
 text-shadow:0 0 8px rgba(255,200,200,0.6);
+}
+
+/* paragraph spacing */
+.story-para{
+margin-bottom:35px;
 opacity:0;
-transition:opacity 1.5s;
+animation:fadeIn 2s forwards;
+}
+
+@keyframes fadeIn{
+to{opacity:1;}
 }
 
 button{
-padding:14px 30px;
-margin:12px;
-border-radius:30px;
+padding:15px 35px;
+border-radius:35px;
 border:none;
 background:linear-gradient(to right,#ff5fa2,#ffb3d9);
 color:white;
-font-size:17px;
+font-size:18px;
 cursor:pointer;
-box-shadow:0 0 20px rgba(255,200,150,0.6);
+box-shadow:0 0 25px rgba(255,200,150,0.6);
 transition:0.4s;
 }
 button:hover{
 transform:scale(1.1);
-box-shadow:0 0 35px gold;
-}
-
-.heart{
-position:absolute;
-font-size:24px;
-animation:float 6s infinite;
-opacity:0.8;
-}
-
-@keyframes float{
-0%{transform:translateY(0);}
-100%{transform:translateY(-120vh);}
+box-shadow:0 0 40px gold;
 }
 
 .firework{
@@ -116,27 +106,17 @@ pointer-events:none;
 
 <body>
 
-<script>
-for(let i=0;i<18;i++){
-let h=document.createElement("div");
-h.className="heart";
-h.innerText="🕯️";
-h.style.left=Math.random()*100+"%";
-h.style.top=Math.random()*100+"%";
-h.style.animationDuration=4+Math.random()*6+"s";
-document.body.appendChild(h);
-}
-</script>
-
 <!-- HOME -->
 <div id="home" class="section" style="display:block;">
 <h1>For You, Rohan ❤️</h1>
-<div class="card" style="min-height:auto;">
-<p style="font-size:20px;">
-This is not just a website.<br>
-It’s a feeling I wanted you to experience… 🌙
+<div class="card" style="height:auto;">
+<p style="font-size:22px; text-align:center;">
+This isn’t something to scroll through.<br>
+It’s something to stay with… 🕯️
 </p>
+<div style="text-align:center; margin-top:30px;">
 <button onclick="startJourney()">Begin ✨</button>
+</div>
 </div>
 </div>
 
@@ -144,27 +124,27 @@ It’s a feeling I wanted you to experience… 🌙
 <div id="story" class="section">
 <h1>Our Story 🕯️</h1>
 <div class="card">
-<p id="lyrics"></p>
+<div id="lyrics"></div>
 </div>
 </div>
 
-<!-- MUSIC -->
+<!-- AUDIO -->
 <audio id="song" loop>
 <source src="romantic.mp3" type="audio/mpeg">
 </audio>
 
-<!-- FINAL QUESTION -->
+<!-- FINAL -->
 <div id="final" class="section">
 <h1>One Last Question 💍</h1>
-<div class="card" style="min-height:auto;">
-<p style="font-size:22px; line-height:1.8;">
+<div class="card" style="height:auto; text-align:center;">
+<p style="font-size:24px; line-height:1.8;">
 Will you be my second…<br>
 and forever Valentine,<br>
 <b>Rohan</b>? 💖
 </p>
 <button onclick="yesLove()">YES 💕</button>
 </div>
-<p id="finalMsg"></p>
+<p id="finalMsg" style="text-align:center;"></p>
 </div>
 
 <script>
@@ -173,7 +153,7 @@ document.querySelectorAll('.section').forEach(s=>s.style.display="none");
 document.getElementById(id).style.display="block";
 }
 
-/* PARAGRAPH STORY */
+/* STORY PARAGRAPHS (ACCUMULATING) */
 const storyLines = [
 "We were in the same classroom once, sharing the same space, the same air — yet never a single word. Life moved quietly forward, and somehow… so did we.",
 
@@ -194,27 +174,29 @@ const storyLines = [
 
 function startJourney(){
 show("story");
-let song=document.getElementById("song");
-song.play();
+document.getElementById("song").play();
 
-let box=document.getElementById("lyrics");
-let delay=0;
+const box = document.getElementById("lyrics");
+box.innerHTML = "";
 
-storyLines.forEach(paragraph=>{
+let delay = 0;
+storyLines.forEach(text=>{
 setTimeout(()=>{
-box.style.opacity=0;
-setTimeout(()=>{
-box.innerHTML = paragraph;
-box.scrollTop = 0;
-box.style.opacity=1;
-},800);
-},delay);
-delay += 8500; // slow reading time
+let p = document.createElement("div");
+p.className = "story-para";
+p.innerText = text;
+box.appendChild(p);
+
+/* auto scroll down */
+box.parentElement.scrollTop = box.parentElement.scrollHeight;
+}, delay);
+
+delay += 6000;   // time to read each paragraph
 });
 
 setTimeout(()=>{
 show("final");
-},delay + 4000);
+}, delay + 5000);
 }
 
 /* FIREWORKS */
@@ -237,8 +219,7 @@ setTimeout(()=>f.remove(),1000);
 }
 
 function yesLove(){
-document.getElementById("finalMsg").innerText=
-"Forever begins here… 💖";
+document.getElementById("finalMsg").innerText="Forever begins here… 💖";
 for(let i=0;i<6;i++){
 setTimeout(()=>{
 createFirework(Math.random()*innerWidth,Math.random()*innerHeight);
@@ -249,4 +230,5 @@ createFirework(Math.random()*innerWidth,Math.random()*innerHeight);
 
 </body>
 </html>
+
 
