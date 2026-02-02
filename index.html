@@ -71,7 +71,6 @@ background:linear-gradient(to right,#b30059,#ff6699);
 position:absolute;
 font-size:26px;
 animation:float 5s infinite;
-cursor:pointer;
 }
 
 @keyframes float{
@@ -93,10 +92,9 @@ filter:drop-shadow(0 0 5px pink);
 }
 
 #lyrics{
-color:#fff;
-text-shadow:0 0 10px pink, 0 0 20px gold;
-font-size:20px; 
+font-size:20px;
 line-height:1.8;
+text-shadow:0 0 10px pink, 0 0 20px gold;
 opacity:0;
 transition:opacity 1s ease-in-out;
 }
@@ -106,16 +104,7 @@ position:absolute;
 width:8px;
 height:8px;
 border-radius:50%;
-background:gold;
 pointer-events:none;
-}
-
-input{
-padding:12px;
-border-radius:20px;
-border:none;
-font-size:16px;
-width:70%;
 }
 
 #noBtn{
@@ -126,7 +115,7 @@ position:absolute;
 
 <body>
 
-<!-- Floating hearts -->
+<!-- Floating hearts & petals -->
 <script>
 for(let i=0;i<15;i++){
 let h=document.createElement("div");
@@ -138,7 +127,6 @@ h.style.animationDuration=3+Math.random()*5+"s";
 document.body.appendChild(h);
 }
 
-// Falling petals
 for(let i=0;i<25;i++){
 let p=document.createElement("div");
 p.className="petal";
@@ -161,16 +149,18 @@ document.body.appendChild(p);
 
 <!-- MUSIC -->
 <div id="music" class="section" style="background:radial-gradient(circle at top,#ff9ecf,#5a0033,#1a0010);">
-<h1 style="color:#ffd6e8;text-shadow:0 0 15px gold;">Our Song 🎶</h1>
-<div class="card" style="border:1px solid gold;">
+<h1>Our Song 🎶</h1>
+<div class="card">
 <p id="lyrics"></p>
 <button onclick="playMusic()">💖 Play Our Song</button>
 </div>
 <button class="back" onclick="showSection('home')">🏠 Home</button>
 </div>
 
-<audio id="song" loop>
-<source src="music.mp3" type="audio/mpeg">
+<!-- 🔊 AUDIO (IMPORTANT) -->
+<!-- 🔴 Make sure file name EXACTLY matches -->
+<audio id="song" preload="auto" loop>
+  <source src="song.mp3" type="audio/mpeg">
 </audio>
 
 <!-- FINAL -->
@@ -188,82 +178,68 @@ document.querySelectorAll('.section').forEach(s=>s.style.display="none");
 document.getElementById(id).style.display="block";
 }
 
-// Timed karaoke-style lyrics
-let lyricsLines = [
+let lyricsLines=[
 "Kaise bataaye kyun tujhko chahein… 🌙💖",
 "Har pal bas tera hi naam aaye…",
 "My dearest Rohan, my Bubu… 🐻💕",
 "This song is my silent confession…",
 "Every beat carries a piece of my heart to you…",
-"In this melody, I hide all the words I’m too shy to say…",
-"You are my peace, my madness, my forever dream…",
-"With every note, I promise to love you a little more each day…",
-"When the world feels heavy, remember my love is your home…",
-"And in every lifetime, I will still choose you… only you… 💍💖"
+"And in every lifetime, I will still choose you… 💍💖"
 ];
 
-let timings = [0,6000,12000,18000,24000,30000,36000,42000,48000,54000];
+let timings=[0,6000,12000,18000,24000,30000];
 
 function showLyrics(){
-    let lyricsBox = document.getElementById("lyrics");
-    lyricsLines.forEach((line,index)=>{
-        setTimeout(()=>{
-            lyricsBox.style.opacity=0; 
-            setTimeout(()=>{
-                lyricsBox.innerHTML = line;
-                lyricsBox.style.opacity=1;
-            },500);
-        }, timings[index]);
-    });
+let box=document.getElementById("lyrics");
+lyricsLines.forEach((line,i)=>{
+setTimeout(()=>{
+box.style.opacity=0;
+setTimeout(()=>{
+box.innerHTML=line;
+box.style.opacity=1;
+},400);
+},timings[i]);
+});
 }
 
 function playMusic(){
 let song=document.getElementById("song");
-song.play();
+song.play().catch(err=>console.log(err));
 showLyrics();
 }
 
-// Final YES button & fireworks
 function moveNo(){
-let x=Math.random()*80;
-let y=Math.random()*80;
-document.getElementById("noBtn").style.left=x+"%";
-document.getElementById("noBtn").style.top=y+"%";
+document.getElementById("noBtn").style.left=Math.random()*80+"%";
+document.getElementById("noBtn").style.top=Math.random()*80+"%";
 }
 
-function createFirework(x, y){
-  for(let i=0;i<30;i++){
-    let f=document.createElement("div");
-    f.className="firework";
-    document.body.appendChild(f);
-    let angle=Math.random()*2*Math.PI;
-    let distance=30 + Math.random()*50;
-    let dx=Math.cos(angle)*distance;
-    let dy=Math.sin(angle)*distance;
-    f.style.left=x+"px";
-    f.style.top=y+"px";
-    f.style.background='hsl('+Math.random()*360+',100%,50%)';
-    f.style.transition="all 1s linear";
-    setTimeout(()=>{
-      f.style.left=(x+dx)+"px";
-      f.style.top=(y+dy)+"px";
-      f.style.opacity=0;
-    },10);
-    setTimeout(()=>f.remove(),1000);
-  }
+function createFirework(x,y){
+for(let i=0;i<25;i++){
+let f=document.createElement("div");
+f.className="firework";
+f.style.background=`hsl(${Math.random()*360},100%,50%)`;
+f.style.left=x+"px";
+f.style.top=y+"px";
+document.body.appendChild(f);
+let a=Math.random()*2*Math.PI;
+let d=30+Math.random()*50;
+setTimeout(()=>{
+f.style.transform=`translate(${Math.cos(a)*d}px,${Math.sin(a)*d}px)`;
+f.style.opacity=0;
+},10);
+setTimeout(()=>f.remove(),1000);
+}
 }
 
 function yesLove(){
-  document.getElementById("finalMsg").innerText="Forever begins with you… Happy Valentine’s Day 💍💖";
-  let w=window.innerWidth;
-  let h=window.innerHeight;
-  for(let i=0;i<5;i++){
-    setTimeout(()=>{
-      createFirework(Math.random()*w, Math.random()*h);
-    }, i*300);
-  }
+document.getElementById("finalMsg").innerText="Forever begins with you… 💍💖";
+for(let i=0;i<5;i++){
+setTimeout(()=>createFirework(Math.random()*innerWidth,Math.random()*innerHeight),i*300);
+}
 }
 </script>
 
 </body>
 </html>
+
+
