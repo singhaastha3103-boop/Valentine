@@ -3,201 +3,264 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>My Valentine ❤️</title>
+<title>My Valentine 💖</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display&display=swap" rel="stylesheet">
 
 <style>
-body {
-  margin: 0;
-  height: 100vh;
-  background: linear-gradient(to right, #ff758c, #ff7eb3);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: 'Poppins', sans-serif;
-  overflow: hidden;
+body{
+margin:0;
+font-family:'Playfair Display',serif;
+background:linear-gradient(135deg,#7a003c,#ff4d88,#ffd1dc);
+min-height:100vh;
+text-align:center;
+color:white;
+overflow:hidden;
 }
 
-.container {
-  background: white;
-  padding: 30px 40px;
-  border-radius: 20px;
-  text-align: center;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-  z-index: 2;
+h1{
+font-family:'Great Vibes',cursive;
+font-size:42px;
+color:#ffd9ec;
+text-shadow:0 0 10px pink;
 }
 
-#text {
-  font-size: 24px;
-  color: #ff2e63;
-  min-height: 70px;
+.section{
+display:none;
+padding:25px;
+animation:fade 1s;
 }
 
-#date {
-  color: #ff7eb3;
-  font-size: 16px;
-  margin-top: 10px;
-  animation: blink 1.5s infinite;
-  min-height: 20px;
+@keyframes fade{
+from{opacity:0; transform:translateY(20px);}
+to{opacity:1;}
 }
 
-@keyframes blink {
-  0%,100% {opacity:1;}
-  50% {opacity:0.4;}
+.card{
+background:rgba(255,255,255,0.15);
+backdrop-filter:blur(10px);
+border-radius:25px;
+padding:25px;
+box-shadow:0 0 20px rgba(255,192,203,0.6);
+max-width:420px;
+margin:20px auto;
 }
 
-button {
-  padding: 12px 25px;
-  font-size: 18px;
-  border-radius: 25px;
-  border: none;
-  cursor: pointer;
-  margin: 10px;
+button{
+padding:14px 26px;
+margin:10px;
+border-radius:30px;
+border:1px solid gold;
+background:linear-gradient(to right,#ff5fa2,#ff9ecf);
+color:white;
+font-size:16px;
+cursor:pointer;
+box-shadow:0 0 20px rgba(255,215,0,0.6);
+transition:0.3s;
+}
+button:hover{
+transform:scale(1.08);
+box-shadow:0 0 30px gold;
 }
 
-#yesBtn {
-  background: #ff2e63;
-  color: white;
+.back{
+background:linear-gradient(to right,#b30059,#ff6699);
 }
 
-#noBtn {
-  background: #ccc;
-  position: absolute;
+.heart{
+position:absolute;
+font-size:26px;
+animation:float 5s infinite;
+cursor:pointer;
 }
 
-#musicBtn {
-  background: #ff7eb3;
-  color: white;
+@keyframes float{
+0%{transform:translateY(0);}
+100%{transform:translateY(-100vh);}
 }
 
-/* Hearts */
-.heart {
-  position: fixed;
-  color: red;
-  font-size: 20px;
-  animation: float 4s linear infinite;
+.petal{
+position:absolute;
+font-size:24px;
+animation:fall 7s linear infinite;
+opacity:0.9;
+filter:drop-shadow(0 0 5px pink);
 }
 
-@keyframes float {
-  0% { transform: translateY(0); opacity:1;}
-  100% { transform: translateY(-800px); opacity:0;}
+@keyframes fall{
+0%{transform:translateY(-10vh) rotate(0deg);}
+100%{transform:translateY(110vh) rotate(360deg);}
 }
 
-/* Confetti */
-.confetti {
-  position: fixed;
-  width: 10px;
-  height: 10px;
-  animation: fall 3s linear infinite;
+#lyrics{
+color:#fff;
+text-shadow:0 0 10px pink, 0 0 20px gold;
+font-size:20px; 
+line-height:1.8;
+opacity:0;
+transition:opacity 1s ease-in-out;
 }
 
-@keyframes fall {
-  0% { transform: translateY(0);}
-  100% { transform: translateY(800px);}
+.firework{
+position:absolute;
+width:8px;
+height:8px;
+border-radius:50%;
+background:gold;
+pointer-events:none;
+}
+
+input{
+padding:12px;
+border-radius:20px;
+border:none;
+font-size:16px;
+width:70%;
+}
+
+#noBtn{
+position:absolute;
 }
 </style>
 </head>
 
 <body>
 
-<div class="container" id="mainBox">
-  <div id="text"></div>
-  <div id="date"></div>
+<!-- Floating hearts -->
+<script>
+for(let i=0;i<15;i++){
+let h=document.createElement("div");
+h.className="heart";
+h.innerText="❤️";
+h.style.left=Math.random()*100+"%";
+h.style.top=Math.random()*100+"%";
+h.style.animationDuration=3+Math.random()*5+"s";
+document.body.appendChild(h);
+}
 
-  <div>
-    <button id="yesBtn" onclick="yesClicked()">Yes 💖</button>
-    <button id="noBtn" onmouseover="moveNo()">No 😜</button>
-  </div>
+// Falling petals
+for(let i=0;i<25;i++){
+let p=document.createElement("div");
+p.className="petal";
+p.innerText="🌹";
+p.style.left=Math.random()*100+"%";
+p.style.animationDuration=4+Math.random()*6+"s";
+document.body.appendChild(p);
+}
+</script>
 
-  <br>
-  <button id="musicBtn" onclick="playMusic()">Play Music 🎶</button>
+<!-- HOME -->
+<div id="home" class="section" style="display:block;">
+<h1>Welcome My Love 💖</h1>
+<div class="card">
+<p>Every click is a piece of my heart…</p>
+<button onclick="showSection('music')">🎶 Our Song</button>
+<button onclick="showSection('final')">💍 Final Surprise</button>
+</div>
 </div>
 
-<audio id="music" src="https://www.bensound.com/bensound-music/bensound-love.mp3"></audio>
+<!-- MUSIC -->
+<div id="music" class="section" style="background:radial-gradient(circle at top,#ff9ecf,#5a0033,#1a0010);">
+<h1 style="color:#ffd6e8;text-shadow:0 0 15px gold;">Our Song 🎶</h1>
+<div class="card" style="border:1px solid gold;">
+<p id="lyrics"></p>
+<button onclick="playMusic()">💖 Play Our Song</button>
+</div>
+<button class="back" onclick="showSection('home')">🏠 Home</button>
+</div>
+
+<audio id="song" loop>
+<source src="song.mp3" type="audio/mpeg">
+</audio>
+
+<!-- FINAL -->
+<div id="final" class="section">
+<h1>Will you be my Valentine forever? 💍</h1>
+<button onclick="yesLove()">YES 💖</button>
+<button id="noBtn" onmouseover="moveNo()">NO 😜</button>
+<p id="finalMsg"></p>
+<button class="back" onclick="showSection('home')">🏠 Home</button>
+</div>
 
 <script>
-// Typing main text
-const text = "Hey Rohan 😘 it’s our second Valentine together… will you be my Valentine again? ❤️🙈";
-let i = 0;
+function showSection(id){
+document.querySelectorAll('.section').forEach(s=>s.style.display="none");
+document.getElementById(id).style.display="block";
+}
 
-function typeText() {
-  if (i < text.length) {
-    document.getElementById("text").innerHTML += text.charAt(i);
-    i++;
-    setTimeout(typeText, 80);
+// Timed karaoke-style lyrics
+let lyricsLines = [
+"Kaise bataaye kyun tujhko chahein… 🌙💖",
+"Har pal bas tera hi naam aaye…",
+"My dearest Rohan, my Bubu… 🐻💕",
+"This song is my silent confession…",
+"Every beat carries a piece of my heart to you…",
+"In this melody, I hide all the words I’m too shy to say…",
+"You are my peace, my madness, my forever dream…",
+"With every note, I promise to love you a little more each day…",
+"When the world feels heavy, remember my love is your home…",
+"And in every lifetime, I will still choose you… only you… 💍💖"
+];
+
+let timings = [0,6000,12000,18000,24000,30000,36000,42000,48000,54000];
+
+function showLyrics(){
+    let lyricsBox = document.getElementById("lyrics");
+    lyricsLines.forEach((line,index)=>{
+        setTimeout(()=>{
+            lyricsBox.style.opacity=0; 
+            setTimeout(()=>{
+                lyricsBox.innerHTML = line;
+                lyricsBox.style.opacity=1;
+            },500);
+        }, timings[index]);
+    });
+}
+
+function playMusic(){
+let song=document.getElementById("song");
+song.play();
+showLyrics();
+}
+
+// Final YES button & fireworks
+function moveNo(){
+let x=Math.random()*80;
+let y=Math.random()*80;
+document.getElementById("noBtn").style.left=x+"%";
+document.getElementById("noBtn").style.top=y+"%";
+}
+
+function createFirework(x, y){
+  for(let i=0;i<30;i++){
+    let f=document.createElement("div");
+    f.className="firework";
+    document.body.appendChild(f);
+    let angle=Math.random()*2*Math.PI;
+    let distance=30 + Math.random()*50;
+    let dx=Math.cos(angle)*distance;
+    let dy=Math.sin(angle)*distance;
+    f.style.left=x+"px";
+    f.style.top=y+"px";
+    f.style.background='hsl('+Math.random()*360+',100%,50%)';
+    f.style.transition="all 1s linear";
+    setTimeout(()=>{
+      f.style.left=(x+dx)+"px";
+      f.style.top=(y+dy)+"px";
+      f.style.opacity=0;
+    },10);
+    setTimeout(()=>f.remove(),1000);
   }
 }
-typeText();
 
-// Tomorrow's date
-const tomorrow = new Date();
-tomorrow.setDate(tomorrow.getDate() + 1);
-const options = { day: 'numeric', month: 'long', year: 'numeric' };
-const dateText = "💌 Our Second Valentine – " + tomorrow.toLocaleDateString("en-GB", options);
-
-// Typing date
-let j = 0;
-function typeDate() {
-  if (j < dateText.length) {
-    document.getElementById("date").innerHTML += dateText.charAt(j);
-    j++;
-    setTimeout(typeDate, 80);
-  }
-}
-setTimeout(typeDate, 2000);
-
-// No button runs away
-const noBtn = document.getElementById("noBtn");
-function moveNo() {
-  const x = Math.random() * (window.innerWidth - 100);
-  const y = Math.random() * (window.innerHeight - 100);
-  noBtn.style.left = x + "px";
-  noBtn.style.top = y + "px";
-}
-
-// Yes click → full screen romantic message + date
-function yesClicked() {
-  document.body.innerHTML = `
-    <h1 style="color:white; text-align:center; margin-top:30vh; padding:20px;">
-      💖 Happy our second Valentine, Rohan 💖<br><br>
-      From our first Valentine to our second one today…<br>
-      I still get butterflies when I think of you 🙈❤️<br><br>
-      Thank you for being my Valentine again.<br>
-      Let’s make many more beautiful memories together 💖✨<br><br>
-      ${dateText}
-    </h1>
-  `;
-  createConfetti();
-  document.getElementById("music")?.play();
-}
-
-// Music
-function playMusic() {
-  document.getElementById("music").play();
-}
-
-// Hearts animation
-setInterval(createHeart, 300);
-function createHeart() {
-  const heart = document.createElement("div");
-  heart.classList.add("heart");
-  heart.innerHTML = "❤️";
-  heart.style.left = Math.random() * window.innerWidth + "px";
-  heart.style.top = "100%";
-  document.body.appendChild(heart);
-
-  setTimeout(() => heart.remove(), 4000);
-}
-
-// Confetti
-function createConfetti() {
-  for(let i=0;i<60;i++){
-    const conf = document.createElement("div");
-    conf.classList.add("confetti");
-    conf.style.left = Math.random()*window.innerWidth + "px";
-    conf.style.backgroundColor = "hsl(" + Math.random()*360 + ",100%,50%)";
-    document.body.appendChild(conf);
-
-    setTimeout(()=> conf.remove(),3000);
+function yesLove(){
+  document.getElementById("finalMsg").innerText="Forever begins with you… Happy Valentine’s Day 💍💖";
+  let w=window.innerWidth;
+  let h=window.innerHeight;
+  for(let i=0;i<5;i++){
+    setTimeout(()=>{
+      createFirework(Math.random()*w, Math.random()*h);
+    }, i*300);
   }
 }
 </script>
