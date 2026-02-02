@@ -127,4 +127,110 @@ Read it slowly… like a letter. 🕯️
 </div>
 
 <!-- STORY -->
-<div id="story"
+<div id="story" class="section">
+<h1>Our Story 🌙</h1>
+<div class="card">
+<div id="lyrics"></div>
+</div>
+</div>
+
+<!-- AUDIO -->
+<audio id="song" loop>
+<source src="romantic.mp3" type="audio/mpeg">
+</audio>
+
+<!-- FINAL -->
+<div id="final" class="section">
+<h1>One Last Question 💍</h1>
+<div class="card">
+<p style="font-size:24px; line-height:1.9; text-align:center;">
+Will you be my second…<br>
+and forever Valentine,<br>
+<b>Rohan</b>? 💖
+</p>
+<button onclick="yesLove()">YES 💕</button>
+</div>
+<p id="finalMsg" style="text-align:center;font-size:20px;"></p>
+</div>
+
+<script>
+function show(id){
+document.querySelectorAll('.section').forEach(s=>s.style.display="none");
+document.getElementById(id).style.display="block";
+window.scrollTo(0,0);
+}
+
+/* STORY CONTENT */
+const storyLines = [
+"We were in the same classroom once, sharing the same space, the same air — yet never a single word. Life moved quietly forward, and somehow… so did we.",
+
+"Years passed. Three… maybe four. Enough time for us to grow into different versions of ourselves. And then — unexpectedly — the universe decided to try again.",
+
+"A screen. A message. And suddenly, you weren’t just a familiar face… you were a feeling. We talked like we were making up for lost time, like two souls that finally found the right moment.",
+
+"Within just a month… maybe two… you asked me a question that carried so much hope. And when I said yes, it didn’t feel rushed. It felt right.",
+
+"Since then, every day with you has been gentle in ways I didn’t know love could be. You take care of my foolish little moments like they’re something precious — not something to fix.",
+
+"You calm my storms without ever silencing me. You handle my anger not with fear, but with patience. You stay — even when I’m difficult. Especially when I’m difficult.",
+
+"With you, I learned that love isn’t loud promises — it’s quiet understanding. It’s choosing each other on ordinary days. It’s knowing that someone sees all of you and still says, “I’m here.”",
+
+"I don’t know how many lifetimes it took, but somehow we met at the exact right one. And every day since, I feel blessed — not loudly, but deeply."
+];
+
+function startJourney(){
+show("story");
+document.getElementById("song").play();
+
+const box = document.getElementById("lyrics");
+box.innerHTML = "";
+
+let delay = 0;
+storyLines.forEach(text=>{
+setTimeout(()=>{
+let p = document.createElement("div");
+p.className="story-para";
+p.innerText=text;
+box.appendChild(p);
+p.scrollIntoView({behavior:"smooth",block:"end"});
+},delay);
+delay += 5500;
+});
+
+setTimeout(()=>{
+show("final");
+},delay + 4000);
+}
+
+/* FIREWORKS */
+function createFirework(x,y){
+for(let i=0;i<30;i++){
+let f=document.createElement("div");
+f.className="firework";
+f.style.background=`hsl(${Math.random()*360},100%,60%)`;
+f.style.left=x+"px";
+f.style.top=y+"px";
+document.body.appendChild(f);
+let a=Math.random()*2*Math.PI;
+let d=40+Math.random()*60;
+setTimeout(()=>{
+f.style.transform=`translate(${Math.cos(a)*d}px,${Math.sin(a)*d}px)`;
+f.style.opacity=0;
+},10);
+setTimeout(()=>f.remove(),1000);
+}
+}
+
+function yesLove(){
+document.getElementById("finalMsg").innerText="Forever begins here… 💖";
+for(let i=0;i<6;i++){
+setTimeout(()=>{
+createFirework(Math.random()*innerWidth,Math.random()*innerHeight);
+},i*400);
+}
+}
+</script>
+
+</body>
+</html>
