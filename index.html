@@ -38,7 +38,6 @@ color:#ffd6e8;
 text-shadow:0 0 25px rgba(255,180,200,.9);
 }
 
-/* story card */
 .card{
 background:rgba(255,255,255,0.12);
 backdrop-filter:blur(18px);
@@ -83,21 +82,7 @@ font-size:16px;
 text-align:center;
 }
 
-/* candles */
-.candle{
-position:absolute;
-bottom:0;
-font-size:26px;
-opacity:.8;
-animation:flicker 2s infinite alternate;
-}
-
-@keyframes flicker{
-from{transform:scale(1)}
-to{transform:scale(1.06)}
-}
-
-#noBtn{position:absolute}
+#noBtn,#blushBtn{position:absolute}
 
 .bigLove{
 font-size:34px;
@@ -106,16 +91,17 @@ text-align:center;
 color:#ffd6e8;
 text-shadow:0 0 45px pink;
 margin-top:20vh;
-animation:pulse 2s infinite;
 }
 
-@keyframes pulse{
-0%{text-shadow:0 0 20px pink}
-50%{text-shadow:0 0 50px hotpink}
-100%{text-shadow:0 0 20px pink}
+.candle{
+position:absolute;
+bottom:0;
+font-size:26px;
+opacity:.8;
+animation:flicker 2s infinite alternate;
 }
+@keyframes flicker{to{transform:scale(1.06)}}
 
-/* fireworks */
 .fire{
 position:absolute;
 width:8px;
@@ -129,15 +115,20 @@ pointer-events:none;
 
 <body>
 
-<!-- candles -->
 <div class="candle" style="left:12%">🕯️</div>
 <div class="candle" style="left:50%">🕯️</div>
 <div class="candle" style="left:88%">🕯️</div>
 
-<!-- HOME -->
-<div id="home" class="section" style="display:block">
-<h1>Our Story 🌙</h1>
-<button onclick="startStory()">Begin ✨</button>
+<!-- SECRET FIRST -->
+<div id="secret" class="section" style="display:block">
+<h1>Before We Begin… 🔐</h1>
+<p style="text-align:center;font-size:20px">What word feels like us?</p>
+<div style="text-align:center">
+<input id="code" placeholder="Type your answer… 💕">
+<br>
+<button onclick="unlock()">Unlock ✨</button>
+<p id="error"></p>
+</div>
 </div>
 
 <!-- STORY -->
@@ -146,29 +137,27 @@ pointer-events:none;
 <div class="card" id="lyrics"></div>
 </div>
 
-<!-- SECRET -->
-<div id="secret" class="section">
-<h1>One Last Thing 🔐</h1>
-<p style="text-align:center;font-size:20px">
-What word feels like us?
-</p>
-<div style="text-align:center">
-<input id="code" placeholder="Type your answer… 💕">
-<br>
-<button onclick="unlock()">Unlock 💌</button>
-<p id="error"></p>
-</div>
-</div>
-
-<!-- QUESTION -->
+<!-- VALENTINE QUESTION -->
 <div id="question" class="section">
-<h1>Rohan… 💍</h1>
+<h1>Rohan… 💖</h1>
 <p style="text-align:center;font-size:22px;line-height:2">
 Will you be my second  
-<br>and my forever Valentine? 💖
+<br>and my forever Valentine?
 </p>
-<button onclick="yes()">YES 💖</button>
+<button onclick="goProposal()">YES 💖</button>
 <button id="noBtn" onmouseover="moveNo()">NO 😜</button>
+</div>
+
+<!-- PROPOSAL -->
+<div id="proposal" class="section">
+<h1>One More Question… 💍</h1>
+<p class="bigLove">
+Will you be mine —  
+<br>not just in love,  
+<br>but in life?
+</p>
+<button onclick="finalYes()">YES, ALWAYS 💍</button>
+<button id="blushBtn" onmouseover="moveBlush()">Let me blush first 😳</button>
 </div>
 
 <!-- FINAL -->
@@ -176,22 +165,20 @@ Will you be my second
 <div class="bigLove">
 Then stay…  
 <br>not just as my Valentine,  
-<br>but as my forever. 💍💖
+<br>but as my forever. 💖
 </div>
 <button onclick="restart()">Relive Our Story 🌙</button>
 </div>
 
-<!-- AUDIO -->
 <audio id="song" loop>
-<source src="romantic.mp3" type="audio/mpeg">
+<source src="romantic.mp3">
 </audio>
-
 <audio id="heart">
-<source src="heartbeat.mp3" type="audio/mpeg">
+<source src="heartbeat.mp3">
 </audio>
 
 <script>
-const story = [
+const story=[
 "We were in the same classroom once, sharing the same space, the same air — yet never a single word.",
 "Years passed. Three… maybe four. And then — the universe tried again.",
 "A screen. A message. And suddenly, you weren’t just a familiar face… you were a feeling.",
@@ -206,76 +193,53 @@ document.querySelectorAll('.section').forEach(s=>s.style.display="none");
 document.getElementById(id).style.display="block";
 }
 
-function startStory(){
+function unlock(){
+if(code.value.trim().toLowerCase()==="forever"){
 show("story");
-const song=document.getElementById("song");
+playStory();
+}else error.innerText="Think with your heart 💗";
+}
+
+function playStory(){
 song.volume=0;
-song.play().catch(()=>document.body.addEventListener("click",()=>song.play(),{once:true}));
-
+song.play();
 let v=0;
-const fade=setInterval(()=>{
-if(v>=0.8) clearInterval(fade);
-else{v+=0.02; song.volume=v;}
-},200);
-
-const box=document.getElementById("lyrics");
+let fade=setInterval(()=>{v+=0.02;song.volume=v;if(v>=0.8)clearInterval(fade)},200);
+let box=lyrics,delay=0;
 box.innerHTML="";
-let delay=0;
-story.forEach(text=>{
+story.forEach(t=>{
 setTimeout(()=>{
 let p=document.createElement("div");
 p.className="story-para";
-p.innerText=text;
+p.innerText=t;
 box.appendChild(p);
 p.scrollIntoView({behavior:"smooth"});
 },delay);
 delay+=6500;
 });
-setTimeout(()=>show("secret"),delay+2000);
+setTimeout(()=>show("question"),delay+2000);
 }
 
-function unlock(){
-if(document.getElementById("code").value.trim().toLowerCase()==="forever"){
-show("question");
-}else{
-document.getElementById("error").innerText="Think with your heart… 💗";
-}
-}
+function moveNo(){noBtn.style.left=Math.random()*80+"%";noBtn.style.top=Math.random()*80+"%";}
+function goProposal(){show("proposal")}
+function moveBlush(){blushBtn.style.left=Math.random()*80+"%";blushBtn.style.top=Math.random()*80+"%";}
 
-function moveNo(){
-document.getElementById("noBtn").style.left=Math.random()*80+"%";
-document.getElementById("noBtn").style.top=Math.random()*80+"%";
-}
-
-function firework(){
+function finalYes(){
+show("final");
+heart.play();
 for(let i=0;i<30;i++){
 let f=document.createElement("div");
 f.className="fire";
 document.body.appendChild(f);
-let x=window.innerWidth/2;
-let y=window.innerHeight/2;
-f.style.left=x+"px";
-f.style.top=y+"px";
-let a=Math.random()*2*Math.PI;
-let d=30+Math.random()*60;
-setTimeout(()=>{
-f.style.left=x+Math.cos(a)*d+"px";
-f.style.top=y+Math.sin(a)*d+"px";
-f.style.opacity=0;
-},10);
+let x=innerWidth/2,y=innerHeight/2;
+f.style.left=x+"px";f.style.top=y+"px";
+let a=Math.random()*2*Math.PI,d=30+Math.random()*60;
+setTimeout(()=>{f.style.left=x+Math.cos(a)*d+"px";f.style.top=y+Math.sin(a)*d+"px";f.style.opacity=0},10);
 setTimeout(()=>f.remove(),1000);
 }
 }
 
-function yes(){
-show("final");
-document.getElementById("heart").play();
-firework();
-}
-
-function restart(){
-show("home");
-}
+function restart(){location.reload()}
 </script>
 
 </body>
