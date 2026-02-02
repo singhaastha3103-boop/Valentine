@@ -24,7 +24,7 @@ content:"";
 position:fixed;
 top:0;left:0;
 width:100%;height:100%;
-background:radial-gradient(circle at center,rgba(255,180,120,0.15),transparent 60%);
+background:radial-gradient(circle at center,rgba(255,180,120,0.18),transparent 65%);
 animation:flicker 3s infinite alternate;
 pointer-events:none;
 }
@@ -38,6 +38,7 @@ font-family:'Great Vibes',cursive;
 font-size:46px;
 color:#ffd6e8;
 text-shadow:0 0 20px gold;
+margin-bottom:20px;
 }
 
 .section{
@@ -51,14 +52,27 @@ from{opacity:0; transform:translateY(20px);}
 to{opacity:1;}
 }
 
+/* BIG READING CARD */
 .card{
-background:rgba(255,255,255,0.12);
-backdrop-filter:blur(12px);
-border-radius:25px;
-padding:30px;
-box-shadow:0 0 30px rgba(255,180,120,0.4);
-max-width:520px;
-margin:30px auto;
+background:rgba(255,255,255,0.14);
+backdrop-filter:blur(14px);
+border-radius:30px;
+padding:40px;
+box-shadow:0 0 40px rgba(255,180,120,0.45);
+max-width:720px;
+min-height:60vh;
+margin:20px auto;
+overflow-y:auto;
+}
+
+/* STORY TEXT */
+#lyrics{
+font-size:20px;
+line-height:2;
+text-align:left;
+text-shadow:0 0 8px rgba(255,200,200,0.6);
+opacity:0;
+transition:opacity 1.5s;
 }
 
 button{
@@ -78,10 +92,6 @@ transform:scale(1.1);
 box-shadow:0 0 35px gold;
 }
 
-.back{
-background:linear-gradient(to right,#b30059,#ff6699);
-}
-
 .heart{
 position:absolute;
 font-size:24px;
@@ -92,14 +102,6 @@ opacity:0.8;
 @keyframes float{
 0%{transform:translateY(0);}
 100%{transform:translateY(-120vh);}
-}
-
-#lyrics{
-font-size:19px;
-line-height:1.9;
-text-shadow:0 0 10px pink;
-opacity:0;
-transition:opacity 1.5s;
 }
 
 .firework{
@@ -129,28 +131,32 @@ document.body.appendChild(h);
 <!-- HOME -->
 <div id="home" class="section" style="display:block;">
 <h1>For You, Rohan ❤️</h1>
-<div class="card">
-<p>This is not a website.<br>This is a feeling…</p>
+<div class="card" style="min-height:auto;">
+<p style="font-size:20px;">
+This is not just a website.<br>
+It’s a feeling I wanted you to experience… 🌙
+</p>
 <button onclick="startJourney()">Begin ✨</button>
 </div>
 </div>
 
 <!-- STORY -->
 <div id="story" class="section">
-<h1>Our Story 🌙</h1>
+<h1>Our Story 🕯️</h1>
 <div class="card">
 <p id="lyrics"></p>
 </div>
 </div>
 
+<!-- MUSIC -->
 <audio id="song" loop>
-<source src="song.mp3" type="audio/mpeg">
+<source src="romantic.mp3" type="audio/mpeg">
 </audio>
 
-<!-- QUESTION -->
+<!-- FINAL QUESTION -->
 <div id="final" class="section">
 <h1>One Last Question 💍</h1>
-<div class="card">
+<div class="card" style="min-height:auto;">
 <p style="font-size:22px; line-height:1.8;">
 Will you be my second…<br>
 and forever Valentine,<br>
@@ -167,104 +173,51 @@ document.querySelectorAll('.section').forEach(s=>s.style.display="none");
 document.getElementById(id).style.display="block";
 }
 
+/* PARAGRAPH STORY */
 const storyLines = [
-"We were in the same classroom once…",
-"sharing the same space, the same air,",
-"yet never a single word.",
+"We were in the same classroom once, sharing the same space, the same air — yet never a single word. Life moved quietly forward, and somehow… so did we.",
 
-"Life moved quietly forward,",
-"and somehow… so did we.",
+"Years passed. Three… maybe four. Enough time for us to grow into different versions of ourselves. And then — unexpectedly — the universe decided to try again.",
 
-"Years passed.",
-"Three… maybe four.",
-"Enough time for us to grow",
-"into different versions of ourselves.",
+"A screen. A message. And suddenly, you weren’t just a familiar face… you were a feeling. We talked like we were making up for lost time, like two souls that finally found the right moment.",
 
-"And then—unexpectedly—",
-"the universe decided to try again.",
+"Within just a month… maybe two… you asked me a question that carried so much hope. And when I said yes, it didn’t feel rushed. It felt right.",
 
-"A screen.",
-"A message.",
+"Since then, every day with you has been gentle in ways I didn’t know love could be. You take care of my foolish little moments like they’re something precious — not something to fix.",
 
-"And suddenly,",
-"you weren’t just a familiar face…",
-"you were a feeling.",
+"You calm my storms without ever silencing me. You handle my anger not with fear, but with patience. You stay — even when I’m difficult. Especially when I’m difficult.",
 
-"We talked like we were making up for lost time.",
-"Like two souls that finally found",
-"the right moment.",
+"With you, I learned that love isn’t loud promises — it’s quiet understanding. It’s choosing each other on ordinary days. It’s knowing that someone sees all of you and still says, “I’m here.”",
 
-"Within just a month… maybe two…",
-"you asked me a question",
-"that carried so much hope.",
-
-"And when I said yes…",
-"it didn’t feel rushed.",
-
-"It felt right.",
-
-"Since then, every day with you",
-"has been gentle",
-"in ways I didn’t know love could be.",
-
-"You take care of my foolish little moments,",
-"like they’re something precious—",
-"not something to fix.",
-
-"You calm my storms",
-"without ever silencing me.",
-
-"You handle my anger",
-"not with fear,",
-"but with patience.",
-
-"You stay.",
-"Even when I’m difficult.",
-"Especially when I’m difficult.",
-
-"With you, I learned",
-"that love isn’t loud promises—",
-"it’s quiet understanding.",
-
-"It’s choosing each other",
-"on ordinary days.",
-
-"It’s knowing that someone sees",
-"all of you…",
-"and still says,",
-"“I’m here.”",
-
-"I don’t know how many lifetimes it took,",
-"but somehow…",
-"we met at the exact right one.",
-
-"And every day since,",
-"I feel blessed—",
-"not loudly,",
-"but deeply."
+"I don’t know how many lifetimes it took, but somehow we met at the exact right one. And every day since, I feel blessed — not loudly, but deeply."
 ];
 
 function startJourney(){
 show("story");
 let song=document.getElementById("song");
 song.play();
+
 let box=document.getElementById("lyrics");
 let delay=0;
-storyLines.forEach(line=>{
+
+storyLines.forEach(paragraph=>{
 setTimeout(()=>{
 box.style.opacity=0;
 setTimeout(()=>{
-box.innerHTML=line;
+box.innerHTML = paragraph;
+box.scrollTop = 0;
 box.style.opacity=1;
 },800);
 },delay);
-delay+=4200;
+delay += 8500; // slow reading time
 });
+
 setTimeout(()=>{
 show("final");
-},delay+3000);
+},delay + 4000);
 }
 
+/* FIREWORKS */
 function createFirework(x,y){
 for(let i=0;i<30;i++){
 let f=document.createElement("div");
@@ -296,3 +249,4 @@ createFirework(Math.random()*innerWidth,Math.random()*innerHeight);
 
 </body>
 </html>
+
