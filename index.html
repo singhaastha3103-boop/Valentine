@@ -1,246 +1,462 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>For Rohan 💖</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Saurav's Birthday — Certified Trouble Maker ❤️</title>
+<meta name="theme-color" content="#ffe6f0">
 
 <style>
-*{box-sizing:border-box}
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700;800&family=Pacifico&family=Fredoka:wght@400;500;600;700&display=swap');
 
-body{
-margin:0;
-font-family:'Playfair Display',serif;
-background:radial-gradient(circle at top,#2a0014,#0d0007,#000);
-min-height:100vh;
-color:#ffe6f0;
-overflow:hidden;
+:root {
+  --pink:#ff91b9;
+  --dark:#d64d88;
+  --light:#fff0f6;
+  --purple:#d6c2ff;
+  --yellow:#fff0b8;
+  --ink:#70435e;
 }
 
-.section{
-display:none;
-min-height:100vh;
-padding:30px;
-animation:fade 1.5s;
+* {box-sizing:border-box}
+html {scroll-behavior:smooth}
+body {
+  margin:0;
+  color:var(--ink);
+  font-family:'DM Sans',sans-serif;
+  background:linear-gradient(150deg,#fff0f6,#f5efff,#fff9e9);
+  overflow-x:hidden;
 }
-
-@keyframes fade{
-from{opacity:0; transform:translateY(20px);}
-to{opacity:1;}
+button {font:inherit;cursor:pointer}
+section {padding:75px 18px;text-align:center}
+.container {max-width:850px;margin:auto}
+h1,h2,h3 {font-family:'Fredoka',sans-serif}
+h1 {font-size:clamp(43px,10vw,68px);color:var(--dark);margin:15px 0}
+h2 {font-size:clamp(30px,7vw,43px);color:var(--dark);margin:10px 0}
+p {line-height:1.8}
+.sub {max-width:580px;margin:10px auto 28px;color:#a0748d}
+.eyebrow {font-size:11px;letter-spacing:3px;font-weight:800;color:#c16b96}
+.btn {
+  border:0;border-radius:40px;padding:14px 23px;
+  color:white;background:linear-gradient(120deg,#ff8eb5,#c69be9);
+  font-weight:800;box-shadow:0 6px 17px #d46c9b38;
+  transition:.2s;
 }
-
-h1{
-font-family:'Great Vibes',cursive;
-font-size:46px;
-text-align:center;
-color:#ffd6e8;
-text-shadow:0 0 25px rgba(255,180,200,.9);
+.btn:hover {transform:translateY(-3px) rotate(-1deg)}
+.white-btn {background:white;color:var(--dark);box-shadow:none;border:1px solid #ffd0e3}
+.card {
+  background:#ffffffc9;border:2px solid white;
+  border-radius:26px;padding:25px;
+  box-shadow:0 10px 30px #a85b8215;
 }
-
-.card{
-background:rgba(255,255,255,0.12);
-backdrop-filter:blur(18px);
-border-radius:35px;
-padding:40px;
-max-width:92vw;
-height:70vh;
-margin:auto;
-overflow-y:auto;
-box-shadow:0 0 60px rgba(255,170,200,.45);
+.hero {
+  min-height:100vh;display:flex;align-items:center;justify-content:center;
+  padding:20px;position:relative;text-align:center;
 }
-
-.story-para{
-font-size:20px;
-line-height:2.1;
-margin-bottom:28px;
-opacity:0;
-animation:show 2s forwards;
+.hero-card {
+  width:min(100%,560px);padding:35px 23px;
+  background:#ffffffd9;border:3px dashed #ffb4d0;
+  border-radius:35px;box-shadow:0 15px 45px #c66d9825;
+  position:relative;z-index:2;
 }
-
-@keyframes show{to{opacity:1}}
-
-button{
-padding:14px 36px;
-border-radius:40px;
-border:none;
-font-size:17px;
-cursor:pointer;
-color:white;
-background:linear-gradient(to right,#ff4d88,#ff9ecf);
-box-shadow:0 0 25px rgba(255,120,170,.7);
-margin:15px;
+.big-emoji {font-size:65px}
+.hero p {max-width:400px;margin:12px auto}
+.sticker {font-size:27px;display:inline-block;margin:5px}
+.pill {
+  display:inline-block;background:#ffe3ef;color:#bd5785;
+  border-radius:30px;padding:7px 14px;font-size:12px;font-weight:800;
 }
-
-button:hover{transform:scale(1.05)}
-
-input{
-padding:12px 22px;
-border-radius:25px;
-border:none;
-font-size:16px;
-text-align:center;
+.grid {
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:14px;margin-top:25px;
 }
-
-#noBtn,#blushBtn{position:absolute}
-
-.bigLove{
-font-size:34px;
-line-height:1.9;
-text-align:center;
-color:#ffd6e8;
-text-shadow:0 0 45px pink;
-margin-top:20vh;
+.award {
+  padding:20px 12px;background:white;border-radius:22px;
+  border:2px solid #ffe1ed;transform:rotate(-1deg);
 }
-
-.candle{
-position:absolute;
-bottom:0;
-font-size:26px;
-opacity:.8;
-animation:flicker 2s infinite alternate;
+.award:nth-child(even) {transform:rotate(1deg)}
+.award div {font-size:35px}
+.award strong {display:block;margin-top:10px;color:#b84f82}
+.award small {display:block;margin-top:6px;color:#98748b;line-height:1.5}
+.gallery {
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:17px;margin-top:28px;
 }
-@keyframes flicker{to{transform:scale(1.06)}}
-
-.fire{
-position:absolute;
-width:8px;
-height:8px;
-border-radius:50%;
-background:pink;
-pointer-events:none;
+.polaroid {background:white;padding:9px 9px 15px;transform:rotate(-2deg);box-shadow:0 7px 18px #8e52601b}
+.polaroid:nth-child(even) {transform:rotate(2deg)}
+.polaroid img {width:100%;height:210px;object-fit:cover;border-radius:5px;background:#ffe5ef}
+.polaroid p {font-family:'Pacifico';color:#c35d8d;margin:8px 0 0}
+.jar-area {position:relative;width:290px;height:350px;margin:30px auto}
+.jar-neck {
+  position:absolute;top:12px;left:95px;width:100px;height:35px;
+  background:#f7c5dc;border:3px solid #e6a1c0;border-radius:10px;
+}
+.jar-neck:before {
+  content:"";position:absolute;top:-8px;left:-8px;
+  width:110px;height:9px;background:#e6a1c0;border-radius:10px;
+}
+.jar-glass {
+  position:absolute;top:40px;left:30px;width:230px;height:270px;
+  border:5px solid #e8a9c6;border-radius:35px 35px 48px 48px;
+  background:linear-gradient(135deg,#fff9ffcc,#f8d2e877);
+  box-shadow:inset 10px 0 15px #fff,0 12px 25px #d879a833;
+  overflow:hidden;
+}
+.jar-glass:after {
+  content:"";position:absolute;top:10px;left:10px;
+  width:10px;height:200px;background:#fff8;border-radius:20px;
+  pointer-events:none;
+}
+.jar-label {
+  position:absolute;bottom:14px;left:38px;width:145px;
+  padding:9px 4px;background:#fff4e9;border:2px dashed #edabc5;
+  border-radius:12px;text-align:center;color:#c45b8b;
+  font-family:'Pacifico';font-size:13px;transform:rotate(-3deg);z-index:4;
+}
+.jar-heart {
+  position:absolute;border:0;background:transparent;
+  font-size:29px;padding:2px;cursor:pointer;z-index:2;
+  transition:transform .2s;filter:drop-shadow(0 3px 3px #ad6b8833);
+}
+.jar-heart:hover {transform:scale(1.4) rotate(12deg)}
+.jar-heart.opened {opacity:.3;filter:grayscale(1)}
+.jar-note {
+  max-width:340px;margin:20px auto;padding:27px 20px;
+  background:#fff4f8;border:2px dashed #e99cbd;border-radius:23px;
+  box-shadow:0 12px 30px #d879a833;animation:pop .4s ease;
+}
+@keyframes pop {
+  from {opacity:0;transform:translateY(20px) scale(.8)}
+  to {opacity:1;transform:translateY(0) scale(1)}
+}
+.note-message {font-family:'Fredoka';font-size:24px;color:#b94e83;line-height:1.5}
+.hidden {display:none!important}
+.court {
+  background:#fff6df;border:3px dashed #efc56e;
+  border-radius:25px;padding:25px;
+}
+.charge {
+  background:white;border-radius:15px;padding:13px;
+  margin:10px 0;text-align:left;
+}
+.quiz-options {display:grid;gap:12px;margin:20px auto;max-width:450px}
+.quiz-options button {
+  padding:14px;border:2px solid #ffd2e4;background:white;
+  color:#a84f7d;border-radius:16px;font-weight:700;
+}
+.result {font-family:'Fredoka';font-size:20px;color:#c65388;min-height:60px;margin-top:15px}
+.letter {
+  background:#fffaf0;border:2px dashed #e8a3be;
+  border-radius:22px;padding:28px;text-align:left;
+  line-height:2;max-width:620px;margin:25px auto;
+}
+.float {
+  position:fixed;bottom:-40px;pointer-events:none;z-index:99;
+  animation:up 5s linear forwards;
+}
+@keyframes up {to {transform:translateY(-110vh) rotate(50deg);opacity:0}}
+footer {padding:35px 15px;text-align:center;background:#ffe5ef;color:#a84f7d}
+@media(max-width:440px) {
+  .gallery {gap:10px}
+  .polaroid img {height:165px}
+  .grid {gap:9px}
+  .award {padding:15px 8px}
 }
 </style>
 </head>
 
 <body>
 
-<div class="candle" style="left:12%">🕯️</div>
-<div class="candle" style="left:50%">🕯️</div>
-<div class="candle" style="left:88%">🕯️</div>
+<!-- INTRO -->
+<header class="hero">
+  <div class="hero-card">
+    <div class="pill">OFFICIAL BIRTHDAY NOTICE 🚨</div>
+    <div class="big-emoji">🤡🎂🧸</div>
+    <div class="eyebrow">ATTENTION SAURAV!</div>
+    <h1>Happy Birthday,<br>Mr. Trouble! 😂</h1>
+    <p>A very special human was born today. Unfortunately, he also became my biggest headache. 😭</p>
+    <p>I've prepared something for you. Don't get too excited, idiot. 💗</p>
+    <button class="btn" onclick="go('awards')">Enter your birthday madness 😂</button>
+    <p style="font-size:12px">Warning: Excessive cuteness and girlfriend roasting ahead.</p>
+  </div>
+</header>
 
-<!-- SECRET FIRST -->
-<div id="secret" class="section" style="display:block">
-<h1>Before We Begin… 🔐</h1>
-<p style="text-align:center;font-size:20px">What word feels like us?</p>
-<div style="text-align:center">
-<input id="code" placeholder="Type your answer… 💕">
-<br>
-<button onclick="unlock()">Unlock ✨</button>
-<p id="error"></p>
-</div>
-</div>
+<!-- AWARDS -->
+<section id="awards">
+  <div class="container">
+    <div class="eyebrow">CHAPTER 01 — THE AWARD CEREMONY</div>
+    <h2>The Saurav Awards 🏆</h2>
+    <p class="sub">After extensive research (aka tolerating you), I've decided to honour your achievements.</p>
 
-<!-- STORY -->
-<div id="story" class="section">
-<h1>For You, Rohan 💖</h1>
-<div class="card" id="lyrics"></div>
-</div>
+    <div class="grid">
+      <div class="award"><div>🏆</div><strong>Professional Irritator</strong><small>For irritating me with Olympic-level dedication.</small></div>
+      <div class="award"><div>🎭</div><strong>Drama Specialist</strong><small>For teasing me and then pretending you did nothing.</small></div>
+      <div class="award"><div>😭</div><strong>CEO of My Tears</strong><small>For occasionally making me cry. Yes, you!</small></div>
+      <div class="award"><div>😂</div><strong>Laughing Therapist</strong><small>For somehow making me laugh even when I'm mad.</small></div>
+      <div class="award"><div>🧸</div><strong>Certified Softie</strong><small>For becoming sweet when I need comforting.</small></div>
+      <div class="award"><div>💗</div><strong>My Favourite Headache</strong><small>For being impossible to replace. Unfortunately.</small></div>
+    </div>
+    <p style="margin-top:25px;font-weight:800;color:#c45b8b">Congratulations! All awards are permanent. No returns. 😂</p>
+  </div>
+</section>
 
-<!-- VALENTINE QUESTION -->
-<div id="question" class="section">
-<h1>Rohan… 💖</h1>
-<p style="text-align:center;font-size:22px;line-height:2">
-Will you be my second  
-<br>and my forever Valentine?
-</p>
-<button onclick="goProposal()">YES 💖</button>
-<button id="noBtn" onmouseover="moveNo()">NO 😜</button>
-</div>
+<!-- MEMORIES -->
+<section id="memories" style="background:#fff8fb">
+  <div class="container">
+    <div class="eyebrow">CHAPTER 02 — EVIDENCE FILE</div>
+    <h2>Proof that we are adorable 📸</h2>
+    <p class="sub">Some pictures of us being cute. Don't let it get to your head, birthday boy.</p>
+    <div class="gallery">
+      <div class="polaroid"><img src="photo1.jpg" alt="Memory 1"><p>Look at us 😂</p></div>
+      <div class="polaroid"><img src="photo2.jpg" alt="Memory 2"><p>My favourite idiot 💗</p></div>
+      <div class="polaroid"><img src="photo3.jpg" alt="Memory 3"><p>Chaos partners 🧸</p></div>
+      <div class="polaroid"><img src="photo4.jpg" alt="Memory 4"><p>Don't get emotional 😭</p></div>
+    </div>
+  </div>
+</section>
 
-<!-- PROPOSAL -->
-<div id="proposal" class="section">
-<h1>One More Question… 💍</h1>
-<p class="bigLove">
-Will you be mine —  
-<br>not just in love,  
-<br>but in life?
-</p>
-<button onclick="finalYes()">YES, ALWAYS 💍</button>
-<button id="blushBtn" onmouseover="moveBlush()">Let me blush first 😳</button>
-</div>
+<!-- LOVE JAR -->
+<section id="jar">
+  <div class="container">
+    <div class="eyebrow">CHAPTER 03 — VERY IMPORTANT RESEARCH</div>
+    <h2>29 reasons I tolerate you 😂💗</h2>
+    <p class="sub">A jar full of little love notes. Tap any heart to open it. And don't complain about the contents!</p>
 
-<!-- FINAL -->
-<div id="final" class="section">
-<div class="bigLove">
-Then stay…  
-<br>not just as my Valentine,  
-<br>but as my forever. 💖
-</div>
-<button onclick="restart()">Relive Our Story 🌙</button>
-</div>
+    <div class="jar-area">
+      <div class="jar-neck"></div>
+      <div class="jar-glass" id="heartJar">
+        <div class="jar-label">Saurav's<br>trouble jar 💌</div>
+      </div>
+    </div>
 
-<audio id="song" loop>
-<source src="romantic.mp3">
-</audio>
-<audio id="heart">
-<source src="heartbeat.mp3">
-</audio>
+    <p>👆 Pick a heart, birthday boy!</p>
+    <div id="jarProgress" class="pill">0 / 29 opened</div>
+
+    <div id="openedNote" class="jar-note hidden">
+      <div style="font-size:45px">💌</div>
+      <div class="eyebrow">CONFIDENTIAL GIRLFRIEND REPORT</div>
+      <p id="noteMessage" class="note-message"></p>
+      <button class="btn white-btn" onclick="closeNote()">Okay, next! 😂</button>
+    </div>
+    <p style="font-size:13px">P.S. You better open all 29. I've worked hard on this nonsense. 😤</p>
+  </div>
+</section>
+
+<!-- COURT -->
+<section id="court" style="background:#fff7e7">
+  <div class="container">
+    <div class="eyebrow">CHAPTER 04 — THE SUPREME GIRLFRIEND COURT</div>
+    <h2>SAURAV vs MY PATIENCE ⚖️</h2>
+    <p class="sub">You have been accused of several serious offences.</p>
+    <div class="court">
+      <div style="font-size:50px">👩🏻‍⚖️</div>
+      <h3>THE COURT IS NOW IN SESSION!</h3>
+      <div class="charge">🔴 Charge 1: Excessive teasing without a licence.</div>
+      <div class="charge">🔴 Charge 2: Making girlfriend angry and then asking "What happened?"</div>
+      <div class="charge">🔴 Charge 3: Making girlfriend cry and then becoming extra sweet.</div>
+      <div class="charge">🔴 Charge 4: Making her laugh when she is trying VERY hard to stay angry.</div>
+      <button class="btn" onclick="verdict()">Deliver the verdict! 🔨</button>
+      <div id="verdict" class="result"></div>
+    </div>
+  </div>
+</section>
+
+<!-- QUIZ -->
+<section id="quiz">
+  <div class="container">
+    <div class="eyebrow">CHAPTER 05 — BOYFRIEND EXAMINATION</div>
+    <h2>How well do you know us? 😂</h2>
+    <p class="sub">Three very serious questions. Your girlfriend is watching.</p>
+    <div class="card">
+      <div style="font-size:45px">📝</div>
+      <h3 id="question">Who is the bigger drama queen?</h3>
+      <div id="options" class="quiz-options"></div>
+      <div id="gameResult" class="result"></div>
+      <button class="btn white-btn" onclick="nextQuestion()">Next question →</button>
+    </div>
+  </div>
+</section>
+
+<!-- LETTER -->
+<section id="letter" style="background:#fff5f9">
+  <div class="container">
+    <div class="eyebrow">CHAPTER 06 — OKAY, NOW BE SERIOUS</div>
+    <h2>A little something from me 💌</h2>
+    <p class="sub">No jokes for the next few seconds. Promise.</p>
+    <button class="btn" onclick="openLetter()">Open this before you go 🥹</button>
+    <div id="letterContent" class="letter hidden">
+      <h3>Dear Saurav, ❤️</h3>
+      <p>First of all, happy birthday to my favourite troublemaker! 😂</p>
+      <p>I honestly don't know how you manage to irritate me, make me angry, sometimes even make me cry, and then somehow become the same person who makes me laugh again.</p>
+      <p>Sometimes I wonder how one person can be this annoying and this special at the same time. 😭</p>
+      <p>I love our silly conversations, your teasing, our little moments and the way you try to calm me down when my emotions get the better of me.</p>
+      <p>Even when we're in different cities, I want you to know that I'm cheering for you, wishing the best for you and hoping this year brings you everything you've been working for.</p>
+      <p>Keep laughing, keep growing, keep being your ridiculous self. And please, for once, try not to irritate me too much. 😂</p>
+      <p>I'm genuinely happy that you're a part of my life.</p>
+      <p>Happy birthday, Saurav. You deserve so much happiness. ❤️</p>
+      <h3>Lots of love,</h3>
+      <p>Your favourite person and permanent victim of your jokes. 💗</p>
+    </div>
+  </div>
+</section>
+
+<!-- END -->
+<section>
+  <div class="container card">
+    <div style="font-size:65px">🎂🥳💗</div>
+    <h2>One last announcement!</h2>
+    <p>You've officially completed another year of being a menace to society.</p>
+    <p>And somehow, you're still my favourite one. 😭❤️</p>
+    <button class="btn" onclick="finalSurprise()">Claim your birthday hug 🤗</button>
+    <div id="final" class="result hidden">
+      <div style="font-size:60px">🤗💗</div>
+      VIRTUAL HUG DELIVERED!<br>
+      Valid until I can give you a real one.
+    </div>
+  </div>
+</section>
+
+<footer>
+  Made with love, laughter and a little bit of irritation. 😂❤️
+  <br>From Lucknow to Pune — 29 November.
+  <br><strong>Happy Birthday, Saurav! 🎂</strong>
+</footer>
 
 <script>
-const story=[
-"We were in the same classroom once, sharing the same space, the same air — yet never a single word.",
-"Years passed. Three… maybe four. And then — the universe tried again.",
-"A screen. A message. And suddenly, you weren’t just a familiar face… you were a feeling.",
-"Within a month or two, you asked me. And when I said yes — it felt right.",
-"You take care of my foolish moments gently. You calm my anger patiently.",
-"You stay. Even when I’m difficult.",
-"And every day since… I feel deeply, endlessly blessed."
+const reasons = [
+"Because irritating me is apparently your full-time profession. 😂",
+"Because you can make me angry without even trying. Talent hai boss!",
+"Because you tease me and then act innocent. WHO TAUGHT YOU THIS? 😭",
+"Because you somehow turn my crying face into a laughing face.",
+"Because after making me cry, you become the world's sweetest human.",
+"Because you know exactly how to get on my nerves.",
+"Because fighting with you is exhausting, but laughing with you is my favourite.",
+"Because you're 50% boyfriend and 50% certified headache.",
+"Because even when I'm angry, I secretly wait for you to make me laugh.",
+"Because your stupid jokes actually work on me. Unfortunately. 😂",
+"Because you never miss an opportunity to tease me.",
+"Because you can go from irritating to adorable in 0.2 seconds.",
+"Because you know how to calm me down when I'm overthinking.",
+"Because you make me laugh even when I'm trying to give you the silent treatment.",
+"Because your innocent face deserves an Oscar. 🎭",
+"Because sometimes I want to fight you and hug you at the same time.",
+"Because you have the audacity to laugh when I'm being dramatic. 😤",
+"Because you make ordinary conversations entertaining.",
+"Because you're my favourite person to annoy back.",
+"Because you have a special talent for testing my patience.",
+"Because you don't let me stay angry for too long.",
+"Because I love our random nonsense.",
+"Because you make me feel cared for in your own little ways.",
+"Because behind all those jokes, you have a genuinely sweet side.",
+"Because you can make a bad day feel a little better.",
+"Because you are my favourite source of laughter and occasional tears. 😭",
+"Because no one else can irritate me quite like you.",
+"Because even your silly little habits make me smile.",
+"And because if I had to choose my favourite headache again, I'd still choose YOU. ❤️"
 ];
 
-function show(id){
-document.querySelectorAll('.section').forEach(s=>s.style.display="none");
-document.getElementById(id).style.display="block";
+const positions = [
+[10,10],[35,8],[63,12],[83,20],[20,30],[48,25],
+[72,35],[8,47],[33,48],[60,47],[85,52],[17,65],
+[45,68],[72,65],[5,80],[30,83],[57,82],[80,83],
+[45,10],[90,38],[18,55],[55,35],[35,18],[68,55],
+[10,25],[85,70],[28,72],[52,55],[75,10]
+];
+
+let opened = [];
+
+function createJar(){
+ const jar=document.getElementById('heartJar');
+ positions.forEach((pos,i)=>{
+  const h=document.createElement('button');
+  h.className='jar-heart';
+  h.textContent=['💗','💕','💖','💜','💓'][i%5];
+  h.style.left=pos[0]+'%';
+  h.style.top=pos[1]+'%';
+  h.setAttribute('aria-label','Open note '+(i+1));
+  h.onclick=()=>openNote(i,h);
+  jar.appendChild(h);
+ });
 }
 
-function unlock(){
-if(code.value.trim().toLowerCase()==="forever"){
-show("story");
-playStory();
-}else error.innerText="Think with your heart 💗";
+function openNote(i,h){
+ if(opened.includes(i)) return;
+ opened.push(i);
+ h.classList.add('opened');
+ document.getElementById('noteMessage').textContent=reasons[i];
+ document.getElementById('openedNote').classList.remove('hidden');
+ document.getElementById('jarProgress').textContent=opened.length+' / 29 love notes opened 💗';
+ document.getElementById('openedNote').scrollIntoView({behavior:'smooth',block:'center'});
+ for(let j=0;j<5;j++)floatEmoji();
 }
 
-function playStory(){
-song.volume=0;
-song.play();
-let v=0;
-let fade=setInterval(()=>{v+=0.02;song.volume=v;if(v>=0.8)clearInterval(fade)},200);
-let box=lyrics,delay=0;
-box.innerHTML="";
-story.forEach(t=>{
-setTimeout(()=>{
-let p=document.createElement("div");
-p.className="story-para";
-p.innerText=t;
-box.appendChild(p);
-p.scrollIntoView({behavior:"smooth"});
-},delay);
-delay+=6500;
-});
-setTimeout(()=>show("question"),delay+2000);
+function closeNote(){
+ document.getElementById('openedNote').classList.add('hidden');
 }
 
-function moveNo(){noBtn.style.left=Math.random()*80+"%";noBtn.style.top=Math.random()*80+"%";}
-function goProposal(){show("proposal")}
-function moveBlush(){blushBtn.style.left=Math.random()*80+"%";blushBtn.style.top=Math.random()*80+"%";}
-
-function finalYes(){
-show("final");
-heart.play();
-for(let i=0;i<30;i++){
-let f=document.createElement("div");
-f.className="fire";
-document.body.appendChild(f);
-let x=innerWidth/2,y=innerHeight/2;
-f.style.left=x+"px";f.style.top=y+"px";
-let a=Math.random()*2*Math.PI,d=30+Math.random()*60;
-setTimeout(()=>{f.style.left=x+Math.cos(a)*d+"px";f.style.top=y+Math.sin(a)*d+"px";f.style.opacity=0},10);
-setTimeout(()=>f.remove(),1000);
-}
+function go(id){
+ document.getElementById(id).scrollIntoView({behavior:'smooth'});
+ for(let i=0;i<12;i++)floatEmoji();
 }
 
-function restart(){location.reload()}
+function verdict(){
+ document.getElementById('verdict').innerHTML=
+ 'GUILTY ON ALL CHARGES! 🔨<br>Sentence: Lifetime subscription to loving, teasing and making your girlfriend laugh. ❤️';
+ for(let i=0;i<15;i++)floatEmoji();
+}
+
+const questions=[
+ {q:'Who is the bigger drama queen?',o:['Obviously me 😂','You, birthday boy!','Both of us 🤝'],a:2,r:'Correct! Two drama queens, one relationship. 😭'},
+ {q:'What happens when you tease me too much?',o:['I laugh','I get angry','All of the above, in that order 😂'],a:2,r:'Exactly! You know the entire cycle by heart. 😭'},
+ {q:'Who usually has to make the first move to end a fight?',o:['Saurav, the troublemaker','Me, the innocent one','Whoever wants peace first 😂'],a:2,r:'A diplomatic answer! You pass... barely. ❤️'}
+];
+let qi=0;
+
+function renderQuiz(){
+ const q=questions[qi];
+ document.getElementById('question').textContent=q.q;
+ document.getElementById('gameResult').textContent='';
+ const box=document.getElementById('options');
+ box.innerHTML='';
+ q.o.forEach((v,i)=>{
+  const b=document.createElement('button');
+  b.textContent=v;
+  b.onclick=()=>{
+   document.getElementById('gameResult').textContent=
+    i===q.a?q.r:'WRONG! Try again, Mr. Trouble. 😂';
+  };
+  box.appendChild(b);
+ });
+}
+function nextQuestion(){
+ qi=(qi+1)%questions.length;
+ renderQuiz();
+}
+
+function openLetter(){
+ document.getElementById('letterContent').classList.remove('hidden');
+ document.getElementById('letterContent').scrollIntoView({behavior:'smooth',block:'center'});
+}
+function finalSurprise(){
+ document.getElementById('final').classList.remove('hidden');
+ for(let i=0;i<25;i++)floatEmoji();
+}
+
+function floatEmoji(){
+ const e=document.createElement('div');
+ e.className='float';
+ e.textContent=['💗','😂','💕','✨','🌸','💖'][Math.floor(Math.random()*6)];
+ e.style.left=Math.random()*100+'vw';
+ e.style.fontSize=(18+Math.random()*22)+'px';
+ document.body.appendChild(e);
+ setTimeout(()=>e.remove(),5000);
+}
+createJar();
+renderQuiz();
+setInterval(()=>{if(Math.random()>.55)floatEmoji()},1600);
 </script>
-
 </body>
 </html>
+
+
